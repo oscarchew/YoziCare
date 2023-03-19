@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gdsc/screen/google_maps_all.dart';
 
 import '../../../infrastructure/google_auth/google_auth_repo.dart';
 
@@ -43,6 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text('Hydration analysis'),
             onTap: () {
 
+            },
+          ),
+          ListTile(
+            title: const Text('Map'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return const GoogleMaps(); // import google_map_all.dart directly
+              }));
             },
           ),
           ListTile(
