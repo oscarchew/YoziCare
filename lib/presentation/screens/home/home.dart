@@ -3,6 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gdsc/screen/google_maps_all.dart';
 
+//kevin
+import 'package:gdsc/screen/home_page.dart';
+import 'package:gdsc/screen/image_picker_page.dart';
+import 'package:gdsc/screen/result_page.dart';
+
 import '../../../infrastructure/google_auth/google_auth_repo.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -51,6 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
                 return const GoogleMaps(); // import google_map_all.dart directly
+              }));
+            },
+          ),
+          ListTile(
+            title: const Text('Food Composition analysis Nutrition Extraction'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return MaterialApp(
+                  home: HomePage(),
+                ); // import google_map_all.dart directly
               }));
             },
           ),
