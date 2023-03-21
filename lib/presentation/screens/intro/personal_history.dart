@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gdsc/domain/database/firestore.dart';
+
+import '../../../infrastructure/firestore/basic_repo.dart';
 import '../shared/shared.dart';
 
 class PersonalHistoryScreen extends StatefulWidget {
@@ -12,14 +13,21 @@ class PersonalHistoryScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _PersonalHistoryScreenState();
 }
 
-enum PersonalHistory {
-  diabetes, hypertension, hyperuricemia, gout,
-  hematuria, proteinuria, renalColic, frequentUrination
-}
-
 class _PersonalHistoryScreenState extends State<PersonalHistoryScreen> {
 
-  final state = List.filled(8, false);
+  final dataRepository = FirestoreBasicFieldRepository('users');
+  final personalHistory = {
+    for (var history in [
+      'diabetes',
+      'hypertension',
+      'hyperuricemia',
+      'gout',
+      'hematuria',
+      'proteinuria',
+      'renalColic',
+      'frequentUrination'
+    ]) history: false
+  };
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -31,50 +39,50 @@ class _PersonalHistoryScreenState extends State<PersonalHistoryScreen> {
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Diabetes',
-              state: state,
-              index: PersonalHistory.diabetes.index
+              state: personalHistory,
+              field: 'diabetes'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Hypertension',
-              state: state,
-              index: PersonalHistory.hypertension.index
+              state: personalHistory,
+              field: 'hypertension'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Hyperuricemia',
-              state: state,
-              index: PersonalHistory.hyperuricemia.index
+              state: personalHistory,
+              field: 'hyperuricemia'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Metabolic Arthritis, Gout',
-              state: state,
-              index: PersonalHistory.gout.index
+              state: personalHistory,
+              field: 'gout'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Hematuria',
-              state: state,
-              index: PersonalHistory.hematuria.index
+              state: personalHistory,
+              field: 'hematuria'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Proteinuria',
-              state: state,
-              index: PersonalHistory.proteinuria.index
+              state: personalHistory,
+              field: 'proteinuria'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Renal colic',
-              state: state,
-              index: PersonalHistory.renalColic.index
+              state: personalHistory,
+              field: 'renalColic'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Frequent urination',
-              state: state,
-              index: PersonalHistory.frequentUrination.index
+              state: personalHistory,
+              field: 'frequentUrination'
           ),
           const SizedBox(height: 20),
           ElevatedButton(onPressed: _submit, child: const Text('Next'))
@@ -84,23 +92,10 @@ class _PersonalHistoryScreenState extends State<PersonalHistoryScreen> {
   );
 
   void _submit() async {
-    // Add data to Firestore
-    final docUser = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
-    final json = {
-      'hasDiabetes': state[PersonalHistory.diabetes.index],
-      'hasHypertension': state[PersonalHistory.hypertension.index],
-      'hasHyperuricemia': state[PersonalHistory.hyperuricemia.index],
-      'hasGout': state[PersonalHistory.gout.index],
-      'hasHematuria': state[PersonalHistory.hematuria.index],
-      'hasProteinuria': state[PersonalHistory.proteinuria.index],
-      'hasRenalColic': state[PersonalHistory.renalColic.index],
-      'hasFrequentUrination': state[PersonalHistory.frequentUrination.index],
-    };
-    await docUser.update(json);
-
-    // Jump to the next screen
+    dataRepository.update(
+        dataType: DataType.healthData,
+        json: personalHistory
+    );
     context.router.replaceNamed('/personal-habits');
   }
 }
