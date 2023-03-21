@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gdsc/domain/database/firestore.dart';
+
+import '../../../infrastructure/firestore/basic_repo.dart';
 import '../shared/shared.dart';
 
 class FamilyHistoryScreen extends StatefulWidget {
@@ -11,14 +12,19 @@ class FamilyHistoryScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _FamilyHistoryScreenState();
 }
-enum FamilyHistory {
-  polycystic, igAN, liddle, others
-}
 
 class _FamilyHistoryScreenState extends State<FamilyHistoryScreen> {
 
+  final firestoreRepository = FirestoreBasicFieldRepository('users');
   final otherFamilyHistoryEditingController = TextEditingController();
-  final state = List.filled(4, false);
+  final familyHistory = {
+    for (var history in [
+      'polycystic',
+      'igAN',
+      'liddle',
+      'others'
+    ]) history: false
+  };
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -30,26 +36,26 @@ class _FamilyHistoryScreenState extends State<FamilyHistoryScreen> {
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
             title: 'Polycystic kidney disease',
-            state: state,
-            index: FamilyHistory.polycystic.index
+            state: familyHistory,
+            field: 'polycystic'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
-              title: 'Immunoglobulin A nephropathy, IgAN',
-              state: state,
-              index: FamilyHistory.igAN.index
+              title: 'Immunoglobulin A nephropathy (IgAN)',
+              state: familyHistory,
+              field: 'igAN'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Liddle\'s syndrome',
-              state: state,
-              index: FamilyHistory.liddle.index
+              state: familyHistory,
+              field: 'liddle'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Others',
-              state: state,
-              index: FamilyHistory.others.index
+              state: familyHistory,
+              field: 'others'
           ),
           const SizedBox(height: 20),
           ElevatedButton(onPressed: _submit, child: const Text('Next'))
@@ -59,19 +65,10 @@ class _FamilyHistoryScreenState extends State<FamilyHistoryScreen> {
   );
 
   void _submit() async {
-    // Add data to Firestore
-    final docUser = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
-    final json = {
-      'hasPolycystic': state[FamilyHistory.polycystic.index],
-      'hasIgAN': state[FamilyHistory.igAN.index],
-      'hasLiddle': state[FamilyHistory.liddle.index],
-      'hasOthers': state[FamilyHistory.others.index],
-    };
-    await docUser.update(json);
-
-    // Jump to the next screen
+    await firestoreRepository.update(
+        dataType: DataType.healthData,
+        json: familyHistory
+    );
     context.router.replaceNamed('/personal-history');
   }
 }

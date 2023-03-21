@@ -1,78 +1,89 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import '../../router/router.gr.dart';
 
-import '../../../infrastructure/google_auth/google_auth_repo.dart';
+class HomePageScreen extends StatelessWidget {
 
-class HomeScreen extends StatefulWidget {
-
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-
-  final _authRepo = GoogleAuthenticationRepository();
+  const HomePageScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: const Text('Home page'),
-    ),
-    body: const Center(
-      child: Text(
-        'Signed in successfully!'
-      )
-    ),
-    drawer: Drawer(
-      child: ListView(
-        children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              color: Colors.lightBlue,
+  Widget build(BuildContext context) => AutoTabsScaffold(
+      backgroundColor: Colors.white,
+      routes: const [
+        EgfrRoute(),
+        FoodRoute(),
+        MapRoute(),
+        ChatbotRoute(),
+        MyDataRoute(),
+        HydrationAnalysisRoute(),
+        SettingsRoute()
+      ],
+      bottomNavigationBuilder: (_, tabsRouter) => SalomonBottomBar(
+        margin: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 30,
+        ),
+        currentIndex: tabsRouter.activeIndex,
+        onTap: tabsRouter.setActiveIndex,
+        items: [
+          SalomonBottomBarItem(
+            selectedColor: Colors.lightGreen,
+            icon: const Icon(
+              Icons.auto_graph,
+              size: 20,
             ),
-            child: Text('Hi, ${FirebaseAuth.instance.currentUser!.displayName}!'),
+            title: const Text('My eGFR'),
           ),
-          ListTile(
-            title: const Text('My CKD data'),
-            onTap: () => context.router.pushNamed(''),
+          SalomonBottomBarItem(
+            selectedColor: Colors.amberAccent,
+            icon: const Icon(
+              Icons.food_bank,
+              size: 20,
+            ),
+            title: const Text('My Food'),
           ),
-          ListTile(
-            title: const Text('Hydration analysis'),
-            onTap: () {
-
-            },
+          SalomonBottomBarItem(
+            selectedColor: Colors.redAccent,
+            icon: const Icon(
+              Icons.map,
+              size: 20,
+            ),
+            title: const Text('CKD Map'),
           ),
-          ListTile(
-            title: const Text('Sign out'),
-            onTap: _signOut
+          SalomonBottomBarItem(
+            selectedColor: Colors.brown,
+            icon: const Icon(
+              Icons.chat,
+              size: 20,
+            ),
+            title: const Text('Chatbot'),
+          ),
+          SalomonBottomBarItem(
+            selectedColor: Colors.blue[200],
+            icon: const Icon(
+              Icons.assignment_outlined,
+              size: 20,
+            ),
+            title: const Text('My Data'),
+          ),
+          SalomonBottomBarItem(
+            selectedColor: Colors.pinkAccent[100],
+            icon: const Icon(
+              Icons.water_drop,
+              size: 20,
+            ),
+            title: const Text('Hydration'),
+          ),
+          SalomonBottomBarItem(
+            selectedColor: Colors.grey,
+            icon: const Icon(
+              Icons.settings,
+              size: 20,
+            ),
+            title: const Text('Settings'),
           )
         ],
       )
-    ),
   );
-
-  void _signOut() async => await _signOutDialog(context);
-
-  Future<void> _signOutDialog(BuildContext context) async => showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('Signing Out'),
-      content: const Text('Do you really want to sign out?'),
-      actions: [
-        ElevatedButton(
-            child: const Text("Yes"),
-            onPressed: () {
-              _authRepo.signOut();
-              context.router.replaceNamed('/');
-            }
-        ),
-        ElevatedButton(
-            child: const Text("No"),
-            onPressed: () => Navigator.pop(context)
-        ),
-      ],
-    ));
 }

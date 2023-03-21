@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gdsc/domain/database/firestore.dart';
 
+import '../../../infrastructure/firestore/basic_repo.dart';
 import '../shared/shared.dart';
 
 class PersonalHabitsScreen extends StatefulWidget {
@@ -13,13 +13,17 @@ class PersonalHabitsScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _PersonalHabitsScreenState();
 }
 
-enum PersonalHabit {
-  painKillerAbuse, antibioticsAbuse, smoking, drinking
-}
-
 class _PersonalHabitsScreenState extends State<PersonalHabitsScreen> {
 
-  final state = List.filled(4, false);
+  final dataRepository = FirestoreBasicFieldRepository('users');
+  final personalHabits = {
+    for (var history in [
+      'painkillerAbuse',
+      'antibioticsAbuse',
+      'smoking',
+      'drinking'
+    ]) history: false
+  };
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -31,26 +35,26 @@ class _PersonalHabitsScreenState extends State<PersonalHabitsScreen> {
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Painkiller abuse',
-              state: state,
-              index: PersonalHabit.painKillerAbuse.index
+              state: personalHabits,
+              field: 'painkillerAbuse'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Antibiotics abuse',
-              state: state,
-              index: PersonalHabit.antibioticsAbuse.index
+              state: personalHabits,
+              field: 'antibioticsAbuse'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Smoking',
-              state: state,
-              index: PersonalHabit.smoking.index
+              state: personalHabits,
+              field: 'smoking'
           ),
           const SizedBox(height: 20),
           SharedStatefulWidget.addSizedCheckBox(
               title: 'Drinking',
-              state: state,
-              index: PersonalHabit.drinking.index
+              state: personalHabits,
+              field: 'drinking'
           ),
           const SizedBox(height: 20),
           ElevatedButton(onPressed: _submit, child: const Text('Next'))
@@ -60,19 +64,10 @@ class _PersonalHabitsScreenState extends State<PersonalHabitsScreen> {
   );
 
   void _submit() async {
-    // Add data to Firestore
-    final docUser = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
-    final json = {
-      'isPainkillerAbuse': state[PersonalHabit.painKillerAbuse.index],
-      'isAntibioticsAbuse': state[PersonalHabit.antibioticsAbuse.index],
-      'isSmoking': state[PersonalHabit.smoking.index],
-      'isDrinking': state[PersonalHabit.drinking.index],
-    };
-    await docUser.update(json);
-
-    // Jump to the next screen
-    context.router.replaceNamed('/home');
+    await dataRepository.update(
+        dataType: DataType.healthData,
+        json: personalHabits
+    );
+    context.router.replaceNamed('/');
   }
 }

@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../../domain/database/firestore.dart';
+import '../../../infrastructure/firestore/array_repo.dart';
+import '../shared/shared.dart';
+import '../../../infrastructure/firestore/basic_repo.dart';
 
 class BasicInfoScreen extends StatefulWidget {
 
@@ -12,6 +15,10 @@ class BasicInfoScreen extends StatefulWidget {
 }
 
 class _BasicInfoScreenState extends State<BasicInfoScreen> {
+
+  final firestoreBasicRepository = FirestoreBasicFieldRepository('users');
+  final firestoreArrayRepository = FirestoreArrayFieldRepository('users');
+
   final genderEditingController = TextEditingController();
   final birthdayEditingController = TextEditingController();
   final weightEditingController = TextEditingController();
@@ -20,48 +27,32 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
   bool isMale = true;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-      body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              addSizedOutlinedTextField(
-                  readOnly: true,
-                  onTap: _pickGender,
-                  controller: genderEditingController,
-                  labelText: 'Gender'),
-              const SizedBox(height: 20),
-              addSizedOutlinedTextField(
-                  readOnly: true,
-                  onTap: _pickDate,
-                  controller: birthdayEditingController,
-                  labelText: 'Birthday'),
-              const SizedBox(height: 20),
-              addSizedOutlinedTextField(
-                  controller: weightEditingController,
-                  labelText: 'Weight'),
-              const SizedBox(height: 20),
-              ElevatedButton(onPressed: _submit, child: const Text('Next'))
-            ],
-          )));
-
-  SizedBox addSizedOutlinedTextField({
-    required TextEditingController controller,
-    required String labelText,
-    bool readOnly = false,
-    void Function()? onTap
-  }) => SizedBox(
-    width: 200,
-    child: TextField(
-      controller: controller,
-      readOnly: readOnly,
-      onTap: onTap,
-      decoration: InputDecoration(
-          border: const OutlineInputBorder(),
-          labelText: labelText
-      ),
-    ),
-  );
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SharedStatefulWidget.addSizedOutlinedTextField(
+                    readOnly: true,
+                    onTap: _pickGender,
+                    controller: genderEditingController,
+                    labelText: 'Gender'),
+                const SizedBox(height: 20),
+                SharedStatefulWidget.addSizedOutlinedTextField(
+                    readOnly: true,
+                    onTap: _pickDate,
+                    controller: birthdayEditingController,
+                    labelText: 'Birthday'),
+                const SizedBox(height: 20),
+                SharedStatefulWidget.addSizedOutlinedTextField(
+                    controller: weightEditingController,
+                    labelText: 'Weight'),
+                const SizedBox(height: 20),
+                ElevatedButton(onPressed: _submit, child: const Text('Next'))
+              ],
+            )));
+  }
 
   void _pickDate() async {
     _birthday = await showDatePicker(
@@ -109,24 +100,18 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
     genderEditingController.text = isMale ? 'Male' : 'Female';
   }
 
-  void _submit() async {
-    // Add data to Firestore
-    if (_birthday == null || weightEditingController.text == '') {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(
-          content: Text('Please fill in all the values!')));
+  Future _submit() async {
+    if (_birthday == null || weightEditingController.text.isEmpty) {
+      context.showSnackbar('Please fill in all the values!');
     }
-    final docUser = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
-    final json = {
-      'gender': (isMale ? 'Male' : 'Female'),
-      'birthday': Timestamp.fromDate(_birthday!),
-      'weight': weightEditingController.text
-    };
-    await docUser.set(json);
-
-    // Jump to the next screen
+    await firestoreBasicRepository.update(
+        dataType: DataType.healthData,
+        json: {
+          'gender': (isMale ? 'Male' : 'Female'),
+          'birthday': Timestamp.fromDate(_birthday!),
+          'weight': double.parse(weightEditingController.text)
+        });
     context.router.replaceNamed('/family-history');
   }
 }
+

@@ -1,10 +1,7 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class AuthenticationRepositoryImpl {
-  Future<SignInState> signIn();
-  Future<void> signOut();
-}
+import '../../domain/authentication/auth.dart';
 
 class GoogleAuthenticationRepository implements AuthenticationRepositoryImpl {
 
@@ -12,8 +9,8 @@ class GoogleAuthenticationRepository implements AuthenticationRepositoryImpl {
   final GoogleSignIn _googleSignIn;
 
   GoogleAuthenticationRepository()
-    : _firebaseAuth = FirebaseAuth.instance,
-      _googleSignIn = GoogleSignIn();
+      : _firebaseAuth = FirebaseAuth.instance,
+        _googleSignIn = GoogleSignIn();
 
   @override
   Future<SignInState> signIn() async {
@@ -38,13 +35,4 @@ class GoogleAuthenticationRepository implements AuthenticationRepositoryImpl {
       _googleSignIn.signOut(),
     ]);
   }
-}
-
-class SignInState {
-
-  final bool isSuccessful;
-  final bool isNewUser;
-  final String username;
-
-  const SignInState(this.isSuccessful, this.isNewUser, this.username);
 }

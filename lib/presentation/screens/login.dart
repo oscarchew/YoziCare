@@ -11,28 +11,31 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final _authRepo = GoogleAuthenticationRepository();
+  final authorizationRepository = GoogleAuthenticationRepository();
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-      body: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                    'Welcome to CKD Care!'
-                ),
-                ElevatedButton(
-                    onPressed: _signInWithGoogle,
-                    child: const Text('Sign in with Google')
-                )
-              ]
-          )
-      )
-  );
+  Widget build(BuildContext context) {
+    print('TESTTESTTEST');
+    return Scaffold(
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                      'Welcome to CKD Care!'
+                  ),
+                  ElevatedButton(
+                      onPressed: _signInWithGoogle,
+                      child: const Text('Sign in with Google')
+                  )
+                ]
+            )
+        )
+    );
+  }
 
   void _signInWithGoogle() async {
-    var signInState = await _authRepo.signIn();
+    var signInState = await authorizationRepository.signIn();
     if (signInState.isSuccessful) {
       ScaffoldMessenger
           .of(context)
@@ -41,9 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
       if (signInState.isNewUser) {
         context.router.replaceNamed('/intro');
       } else {
-        context.router.replaceNamed('/home');
+        context.router.replaceNamed('/');
       }
-      // context.router.replaceNamed('/family-history');
     }
   }
 }
