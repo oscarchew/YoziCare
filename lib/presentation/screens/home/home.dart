@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../infrastructure/google_auth/google_auth_repo.dart';
+import '../../../chat.dart';
 
 class HomeScreen extends StatefulWidget {
 
@@ -44,6 +45,14 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
 
             },
+          ),
+          ListTile(
+            title: const Text('Chatbot'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return Chat();
+              }));
+            }
           ),
           ListTile(
             title: const Text('Sign out'),
