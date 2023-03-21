@@ -68,6 +68,21 @@ dependencies:
   dialogflow_grpc: ^0.2.9
   rxdart: ^0.26.0
 
+  # for google_maps_flutter:
+  google_maps_flutter: ^2.2.4
+  geolocator: ^9.0.2
+  flutter_google_places: ^0.3.0
+  awesome_snackbar_content: ^0.1.1
+  http: ^0.13.5
+  flip_card: ^0.7.0
+  flutter_rating_stars: ^1.0.3+4
+
+  ## kevin
+  dio: ^4.0.4
+  image_picker: ^0.8.4+4
+  path_provider: ^2.0.2
+  # ----
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
