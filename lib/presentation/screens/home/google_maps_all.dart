@@ -10,17 +10,17 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import 'package:gdsc/model/polyline_response.dart';
 
-import '../model/polyline_response.dart';
 
-class GoogleMaps extends StatefulWidget {
-  const GoogleMaps({Key? key}) : super(key: key);
+class GoogleMapsScreen extends StatefulWidget {
+  const GoogleMapsScreen({Key? key}) : super(key: key);
 
   @override
-  State<GoogleMaps> createState() => _GoogleMapsState();
+  State<GoogleMapsScreen> createState() => _GoogleMapsScreenState();
 }
 
-class _GoogleMapsState extends State<GoogleMaps> {
+class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   late GoogleMapController  googleMapController;
 

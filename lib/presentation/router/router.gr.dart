@@ -17,10 +17,10 @@ import 'package:flutter/material.dart' as _i16;
 import '../screens/home/basic_info.dart' as _i12;
 import '../screens/home/chatbot.dart' as _i11;
 import '../screens/home/egfr.dart' as _i8;
-import '../screens/home/food.dart' as _i9;
+import '../screens/home/food_analysis.dart' as _i9;
+import '../screens/home/google_maps_all.dart' as _i10;
 import '../screens/home/home.dart' as _i1;
 import '../screens/home/hydration.dart' as _i13;
-import '../screens/home/map.dart' as _i10;
 import '../screens/home/settings.dart' as _i14;
 import '../screens/intro/basic_info.dart' as _i4;
 import '../screens/intro/family_history.dart' as _i5;
@@ -88,16 +88,16 @@ class AppRouter extends _i15.RootStackRouter {
         child: const _i8.EgfrScreen(),
       );
     },
-    FoodRoute.name: (routeData) {
+    FoodAnalysisRoute.name: (routeData) {
       return _i15.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i9.FoodScreen(),
+        child: _i9.FoodAnalysisScreen(),
       );
     },
-    MapRoute.name: (routeData) {
+    GoogleMapsRoute.name: (routeData) {
       return _i15.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i10.MapScreen(),
+        child: const _i10.GoogleMapsScreen(),
       );
     },
     ChatbotRoute.name: (routeData) {
@@ -139,12 +139,12 @@ class AppRouter extends _i15.RootStackRouter {
               parent: HomePageRoute.name,
             ),
             _i15.RouteConfig(
-              FoodRoute.name,
+              FoodAnalysisRoute.name,
               path: 'food',
               parent: HomePageRoute.name,
             ),
             _i15.RouteConfig(
-              MapRoute.name,
+              GoogleMapsRoute.name,
               path: 'map',
               parent: HomePageRoute.name,
             ),
@@ -295,27 +295,27 @@ class EgfrRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.FoodScreen]
-class FoodRoute extends _i15.PageRouteInfo<void> {
-  const FoodRoute()
+/// [_i9.FoodAnalysisScreen]
+class FoodAnalysisRoute extends _i15.PageRouteInfo<void> {
+  const FoodAnalysisRoute()
       : super(
-          FoodRoute.name,
+          FoodAnalysisRoute.name,
           path: 'food',
         );
 
-  static const String name = 'FoodRoute';
+  static const String name = 'FoodAnalysisRoute';
 }
 
 /// generated route for
-/// [_i10.MapScreen]
-class MapRoute extends _i15.PageRouteInfo<void> {
-  const MapRoute()
+/// [_i10.GoogleMapsScreen]
+class GoogleMapsRoute extends _i15.PageRouteInfo<void> {
+  const GoogleMapsRoute()
       : super(
-          MapRoute.name,
+          GoogleMapsRoute.name,
           path: 'map',
         );
 
-  static const String name = 'MapRoute';
+  static const String name = 'GoogleMapsRoute';
 }
 
 /// generated route for

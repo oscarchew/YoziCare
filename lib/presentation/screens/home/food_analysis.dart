@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'image_picker_page.dart';
 
-class HomePage extends StatelessWidget {
+class FoodAnalysisScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

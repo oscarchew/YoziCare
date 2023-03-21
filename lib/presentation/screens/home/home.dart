@@ -12,8 +12,8 @@ class HomePageScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       routes: const [
         EgfrRoute(),
-        FoodRoute(),
-        MapRoute(),
+        FoodAnalysisRoute(),
+        GoogleMapsRoute(),
         ChatbotRoute(),
         MyDataRoute(),
         HydrationAnalysisRoute(),

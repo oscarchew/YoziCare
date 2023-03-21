@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gdsc/presentation/screens/home/food.dart';
+import 'package:gdsc/presentation/screens/home/food_analysis.dart';
+import 'package:gdsc/presentation/screens/home/google_maps_all.dart';
 import 'package:gdsc/presentation/screens/home/map.dart';
 import '../screens/home/chatbot.dart';
 import '../screens/home/home.dart';
@@ -45,12 +47,12 @@ class CheckIfAlreadyLoggedIn extends AutoRouteGuard {
           // Not yet implemented
           AutoRoute(
               path: 'food',
-              page: FoodScreen
+              page: FoodAnalysisScreen
           ),
           // Not yet implemented
           AutoRoute(
               path: 'map',
-              page: MapScreen
+              page: GoogleMapsScreen
           ),
           // Not yet implemented
           AutoRoute(
