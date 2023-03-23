@@ -13,5 +13,5 @@
 
 ## Reference
 - [off-nutrition-table-extractor](https://github.com/openfoodfacts/off-nutrition-table-extractor)
-- [Inverse Cooking: Recipe Generation from Food Images](https://github.com/facebookresearch/inversecooking)
+- [Inverse Cooking: Recipe Generation from Food Images](https://github.com/facebookresearch/inversecooking) [paper](https://arxiv.org/pdf/1812.06164.pdf)
 
