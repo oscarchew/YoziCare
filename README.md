@@ -10,3 +10,9 @@
 - [DDD (Domain Driven Design)、AutoRoute (Screens 之間的切換)、IDE 快捷鍵](https://hackmd.io/@MrXP/ByUjh3O0s)
 - [Firebase 相關技術 (歡迎編輯分享)](https://hackmd.io/@MrXP/S1NI50wCo)
 - [一次搞懂 Android 行動裝置的偵錯功能](https://hackmd.io/@MrXP/HkfnUYO9o)
+
+
+## cmd
+
+gcloud builds submit --tag gcr.io/gdsc-380809/index
+gcloud run deploy --image gcr.io/gdsc-380809/index --platform managed
