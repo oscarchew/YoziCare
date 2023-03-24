@@ -202,7 +202,7 @@ class _ChatState extends State<ChatbotScreen> {
           Container(
               decoration: BoxDecoration(color: Theme.of(context).cardColor),
               child: IconTheme(
-                data: IconThemeData(color: Theme.of(context).accentColor),
+                data: IconThemeData(color: Theme.of(context).colorScheme.secondary), // accent color changes to .colorScheme.secondary
                 child: Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
