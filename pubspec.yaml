@@ -49,19 +49,15 @@ dependencies:
   shared_preferences: ^2.0.18
   collection: ^1.17.0
 
-  # for google_maps_flutter
-  google_maps_flutter: ^2.2.4
-  geolocator: ^9.0.2
-  flutter_google_places: ^0.3.0
-  awesome_snackbar_content: ^0.1.1
-  http: ^0.13.5
-  flip_card: ^0.7.0
-  flutter_rating_stars: ^1.0.3+4
-
   # Kevin
   dio: ^4.0.4
   image_picker: ^0.8.4+4
   path_provider: ^2.0.2
+  # UI
+  flutter_screenutil: ^5.7.0
+  font_awesome_flutter: ^10.4.0
+  dot_navigation_bar: ^1.0.1+4
+  percent_indicator: ^4.2.3
 
   # Chatbot
   sound_stream: ^0.3.0
@@ -77,11 +73,6 @@ dependencies:
   flip_card: ^0.7.0
   flutter_rating_stars: ^1.0.3+4
 
-  ## kevin
-  dio: ^4.0.4
-  image_picker: ^0.8.4+4
-  path_provider: ^2.0.2
-  # ----
 
 dev_dependencies:
   flutter_test:
