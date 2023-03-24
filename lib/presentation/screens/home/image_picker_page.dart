@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gdsc/screen/food_analysis_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
@@ -41,7 +42,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
         // 跳轉到結果頁面
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ResultPage(_image!, response.data.toString())),
+          MaterialPageRoute(builder: (context) => AddFoodBody(_image!, response.data.toString())),
         );
       } catch (e) {
         print('Error: $e');
