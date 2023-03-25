@@ -21,19 +21,27 @@ class AddFoodBody extends StatelessWidget {
     ScreenUtil.init(context, designSize: const Size(375, 812));
 
     return Scaffold(
+      appBar: AppBar(
+        title: this.isFood ? const Text("Food composition analysis"): const Text("Nutrition extraction"),
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: Container(
         margin: EdgeInsets.only(right: 15. w, left: 15. w),
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: [
-            AddFoodScreenAppBar(),
+            // AddFoodScreenAppBar(),
             FoodImage(this.image),
-            // this.isFood ?
+            this.isFood ?
             FoodCategories(this.response['result']) // True: 執行食物分析
-            // :
+            :
+            CalorieStatistics(this.response['result']['Calories from Fat'],
+                this.response['result']['Carbohydrate'],
+                this.response['result']['Saturated Fat'],
+                this.response['result']['Protein']),
             // CalorieStatistics(1500,80,5,15), // False: 執行營養素標籤分析
-            // CalorieStatistics(),
+            // CalorieStatistics(this.response['result']),
             // ChangeAmount()
           ],
         ),
