@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gdsc/presentation/screens/home/food_analysis_screen.dart';
 import 'image_picker_page.dart';
 
 class FoodAnalysisScreen extends StatelessWidget {
@@ -38,7 +39,8 @@ class FoodAnalysisScreen extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ImagePickerPage(cloudRunUrl)),
+            // MaterialPageRoute(builder: (context) => ImagePickerPage(cloudRunUrl)),
+            MaterialPageRoute(builder: (context) => AddFoodBody()), // For testing
           );
         },
         borderRadius: BorderRadius.circular(8),

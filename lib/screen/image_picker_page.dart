@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
-import 'food_analysis_screen.dart';
+import '../presentation/screens/home/food_analysis_screen.dart';
 // import 'result_page.dart';
 
 class ImagePickerPage extends StatefulWidget {
