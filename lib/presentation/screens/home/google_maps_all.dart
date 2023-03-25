@@ -303,7 +303,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 googleMapController.animateCamera(
                     CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(position.latitude, position.longitude), zoom: 14))
                 );
-                markers.clear();
+                // markers.clear();
                 markers.add(
                     Marker(
                       markerId: const MarkerId("currentLocation"),
