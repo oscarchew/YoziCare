@@ -36,7 +36,7 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
       });
 
       // URL決定是哪個服務
-      if (widget.cloudRunUrl == 'https://ana-z5zukxh7ha-df.a.run.app'){
+      if (widget.cloudRunUrl == 'https://foodanalysis-z5zukxh7ha-df.a.run.app'){
         isFood = true; // 食物成分分析
       }
       else{
@@ -51,10 +51,11 @@ class _ImagePickerPageState extends State<ImagePickerPage> {
       );
 
       // 跳轉到結果頁面 command for testing
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => AddFoodBody(isFood, _image!, response.data)), // 修改跳轉頁面
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AddFoodBody(isFood, _image!, response.data)), // 修改跳轉頁面
+      );
+      print(response.data);
     } catch (e) {
       print('Error: $e');
     }

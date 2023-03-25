@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gdsc/model/food_analysis_content/statistics-tile.dart';
 import 'package:gdsc/model/food_analysis_content/theme.dart';
+// 做食物成分分析
 class FoodCategories extends StatelessWidget {
   // const FoodCategories({Key? key}) : super(key: key);
   var response;
-  // [“food1 positive” ,”food2 negative”]
   FoodCategories(this.response);
 
   @override

@@ -8,13 +8,13 @@ import '../../../model/food_analysis_content/food-image.dart';
 import '../../../model/food_analysis_content/food_categories.dart';
 
 class AddFoodBody extends StatelessWidget {
-  // final bool isFood;
-  // final File image;
-  // var response;
-  var test_respone = ["food1 positive" ,"food2 negative", "food3 positive", "food4 positive", "food5 negative"];
+  final bool isFood;
+  final File image;
+  var response;
+  // var test_respone = ["food1 positive" ,"food2 negative", "food3 positive", "food4 positive", "food5 negative"];
 
 
-  // AddFoodBody(this.isFood, this.image, this.response);
+  AddFoodBody(this.isFood, this.image, this.response);
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ class AddFoodBody extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           children: [
             AddFoodScreenAppBar(),
-            // FoodImage(this.image),
+            FoodImage(this.image),
             // this.isFood ?
-            FoodCategories(test_respone) // True: 執行食物分析
+            FoodCategories(this.response['result']) // True: 執行食物分析
             // :
             // CalorieStatistics(1500,80,5,15), // False: 執行營養素標籤分析
             // CalorieStatistics(),
