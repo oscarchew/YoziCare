@@ -19,6 +19,8 @@ class CalorieStatistics extends StatelessWidget {
 
   // 如果為空設為0
   CalorieStatistics(this.calories,this.carbs, this.fat, this.protein);
+
+
   // CalorieStatistics(this.response);
 
   // 設定一日攝取總量
@@ -29,6 +31,16 @@ class CalorieStatistics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // if(fat == null){
+    //   fat = 0;
+    // }
+    // if(protein == null){
+    //   protein = 0;
+    // }
+    // if(carbs == null){
+    //   carbs = 0;
+    // }
     return Column(
       children: [
         AspectRatio(
@@ -94,7 +106,6 @@ class CalorieStatistics extends StatelessWidget {
   }
 
   Widget _calorieStatistics() {
-
     return Expanded(
       child: Container(
         padding: EdgeInsets.all(20),

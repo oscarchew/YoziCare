@@ -19,6 +19,19 @@ class AddFoodBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
+    if(this.response['result']['Calories from Fat'] == null){
+      this.response['result']['Calories from Fat'] = 0.0;
+    }
+    if(this.response['result']['Carbohydrate'] == null){
+      this.response['result']['Carbohydrate'] = 0.0;
+    }
+    if(this.response['result']['Saturated Fat'] == null){
+      this.response['result']['Saturated Fat'] = 0.0;
+    }
+    if(this.response['result']['Protein'] == null){
+      this.response['result']['Protein'] = 0.0;
+    }
+
 
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +49,8 @@ class AddFoodBody extends StatelessWidget {
             this.isFood ?
             FoodCategories(this.response['result']) // True: 執行食物分析
             :
-            CalorieStatistics(this.response['result']['Calories from Fat'],
+            CalorieStatistics(
+                this.response['result']['Calories from Fat'],
                 this.response['result']['Carbohydrate'],
                 this.response['result']['Saturated Fat'],
                 this.response['result']['Protein']),
