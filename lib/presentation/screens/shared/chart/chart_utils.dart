@@ -79,7 +79,7 @@ extension CanvasUtils on Canvas {
       DataPoint('', 70), DataPoint('', 70)
     ].toOffsets(xInterval: size.width, chartHeight: size.height);
 
-    var opacity = 0.4;
+    var opacity = 0.8;
 
     for (var g in [
       [...line60, ...line70.reversed],
@@ -96,7 +96,7 @@ extension CanvasUtils on Canvas {
           Paint()
             ..color = Colors.green.withOpacity(opacity)
       );
-      opacity += 0.1;
+      opacity -= 0.2;
     }
   }
 

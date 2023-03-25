@@ -21,17 +21,28 @@ class SharedStatefulWidget {
     bool readOnly = false,
     void Function()? onTap
   }) => StatefulBuilder(builder: (BuildContext context, setState) => SizedBox(
-    width: 100,
+    width: 200,
     child: TextField(
+      enableInteractiveSelection: false,
+      cursorColor: Colors.white,
       controller: controller,
       readOnly: readOnly,
       onTap: onTap,
+      style: const TextStyle(color: Colors.white),
       decoration: InputDecoration(
+          labelStyle: const TextStyle(color: Colors.white),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white, width: 1.0),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white, width: 2.5),
+          ),
           border: const OutlineInputBorder(),
           labelText: labelText
       ),
     ),
-  ));
+  )
+  );
 }
 
 extension SnackbarExtension on BuildContext {

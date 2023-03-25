@@ -15,9 +15,7 @@ class HomePageScreen extends StatelessWidget {
         FoodAnalysisRoute(),
         GoogleMapsRoute(),
         ChatbotRoute(),
-        MyDataRoute(),
-        HydrationAnalysisRoute(),
-        SettingsRoute()
+        MyDataRoute()
       ],
       bottomNavigationBuilder: (_, tabsRouter) => SalomonBottomBar(
         margin: const EdgeInsets.symmetric(
@@ -31,15 +29,15 @@ class HomePageScreen extends StatelessWidget {
             selectedColor: Colors.lightGreen,
             icon: const Icon(
               Icons.auto_graph,
-              size: 20,
+              size: 25,
             ),
-            title: const Text('My eGFR'),
+            title: const Text('CKD Stats'),
           ),
           SalomonBottomBarItem(
-            selectedColor: Colors.amberAccent,
+            selectedColor: Colors.amber,
             icon: const Icon(
               Icons.food_bank,
-              size: 20,
+              size: 25,
             ),
             title: const Text('My Food'),
           ),
@@ -47,7 +45,7 @@ class HomePageScreen extends StatelessWidget {
             selectedColor: Colors.redAccent,
             icon: const Icon(
               Icons.map,
-              size: 20,
+              size: 25,
             ),
             title: const Text('CKD Map'),
           ),
@@ -55,7 +53,7 @@ class HomePageScreen extends StatelessWidget {
             selectedColor: Colors.brown,
             icon: const Icon(
               Icons.chat,
-              size: 20,
+              size: 25,
             ),
             title: const Text('Chatbot'),
           ),
@@ -63,25 +61,9 @@ class HomePageScreen extends StatelessWidget {
             selectedColor: Colors.blue[200],
             icon: const Icon(
               Icons.assignment_outlined,
-              size: 20,
+              size: 25,
             ),
             title: const Text('My Data'),
-          ),
-          SalomonBottomBarItem(
-            selectedColor: Colors.pinkAccent[100],
-            icon: const Icon(
-              Icons.water_drop,
-              size: 20,
-            ),
-            title: const Text('Hydration'),
-          ),
-          SalomonBottomBarItem(
-            selectedColor: Colors.grey,
-            icon: const Icon(
-              Icons.settings,
-              size: 20,
-            ),
-            title: const Text('Settings'),
           )
         ],
       )

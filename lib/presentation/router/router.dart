@@ -1,21 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gdsc/presentation/screens/home/food.dart';
 import 'package:gdsc/presentation/screens/home/food_analysis.dart';
 import 'package:gdsc/presentation/screens/home/google_maps_all.dart';
-import 'package:gdsc/presentation/screens/home/map.dart';
 import '../screens/home/chatbot.dart';
 import '../screens/home/home.dart';
-import '../screens/home/hydration.dart';
 import '../screens/home/basic_info.dart';
-import '../screens/home/settings.dart';
 import '../screens/intro/intro.dart';
 import '../screens/intro/basic_info.dart';
 import '../screens/intro/family_history.dart';
 import '../screens/intro/personal_habits.dart';
 import '../screens/intro/personal_history.dart';
-import '../screens/home/egfr.dart';
+import '../screens/home/ckd_stats.dart';
 import '../screens/login.dart';
 
 class CheckIfAlreadyLoggedIn extends AutoRouteGuard {
@@ -62,14 +57,6 @@ class CheckIfAlreadyLoggedIn extends AutoRouteGuard {
           AutoRoute(
               path: 'my-data',
               page: MyDataScreen
-          ),
-          AutoRoute(
-              path: 'hydration',
-              page: HydrationAnalysisScreen
-          ),
-          AutoRoute(
-              path: 'settings',
-              page: SettingsScreen
           )
         ]
     ),
