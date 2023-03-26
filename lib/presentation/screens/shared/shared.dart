@@ -9,8 +9,10 @@ class SharedStatefulWidget {
   }) => StatefulBuilder(builder: (BuildContext context, setState) => SizedBox(
       width: 300,
       child: CheckboxListTile(
-          title: Text(title, style: const TextStyle(fontSize: 16),),
+          title: Text(title, style: const TextStyle(fontSize: 16, color: Colors.lightGreen)),
           value: state[field],
+          activeColor: Colors.lightGreen,
+          checkColor: Colors.white,
           onChanged: (newVal) { setState(() { state[field] = newVal!; }); }
       )
   ));
@@ -19,23 +21,24 @@ class SharedStatefulWidget {
     required TextEditingController controller,
     required String labelText,
     bool readOnly = false,
-    void Function()? onTap
+    void Function()? onTap,
+    Color? color = Colors.white
   }) => StatefulBuilder(builder: (BuildContext context, setState) => SizedBox(
     width: 200,
     child: TextField(
       enableInteractiveSelection: false,
-      cursorColor: Colors.white,
+      cursorColor: color,
       controller: controller,
       readOnly: readOnly,
       onTap: onTap,
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: color),
       decoration: InputDecoration(
-          labelStyle: const TextStyle(color: Colors.white),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 1.0),
+          labelStyle: TextStyle(color: color),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: color!, width: 1.0),
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 2.5),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: color!, width: 2.5),
           ),
           border: const OutlineInputBorder(),
           labelText: labelText

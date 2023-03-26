@@ -69,11 +69,14 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Center(child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         SizedBox(
           width: 400,
-          height: 500,
+          height: 400,
           child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: pageController,
               onPageChanged: (index) => setState(() => pageIndex = index),
               children: [
@@ -87,7 +90,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
         ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Colors.lightBlue[200]
+                backgroundColor: Colors.lightGreen
             ),
             onPressed: _submitAndGoNextPage,
             icon: const Icon(Icons.navigate_next),
@@ -98,7 +101,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
   }
 
   Card defaultCard(String title, List<Widget> widgets) => Card(
-    color: Colors.lightBlue.withOpacity(0.1),
+    color: Colors.green.withOpacity(0.1),
     shadowColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
     clipBehavior: Clip.hardEdge,
@@ -106,15 +109,25 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
         borderRadius: BorderRadius.circular(20)
     ),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          color: Colors.lightBlue,
+          color: Colors.lightGreen,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Center(child: Text(title)),
+            child: Center(child: Text(
+              title,
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+            )),
           ),
-        ), ...widgets
+        ),
+        const SizedBox(height: 20,),
+        Expanded(child: SingleChildScrollView(
+          child: Column(
+              children: widgets
+          ),
+        )),
+        const SizedBox(height: 20,)
       ],
     ),
   );
@@ -124,17 +137,23 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
         readOnly: true,
         onTap: _pickGender,
         controller: genderEditingController,
-        labelText: 'Gender'),
+        labelText: 'Gender',
+        color: Colors.lightGreen
+    ),
     const SizedBox(height: 20),
     SharedStatefulWidget.addSizedOutlinedTextField(
         readOnly: true,
         onTap: _pickDate,
         controller: birthdayEditingController,
-        labelText: 'Birthday'),
+        labelText: 'Birthday',
+        color: Colors.lightGreen
+    ),
     const SizedBox(height: 20),
     SharedStatefulWidget.addSizedOutlinedTextField(
         controller: weightEditingController,
-        labelText: 'Weight')
+        labelText: 'Weight',
+        color: Colors.lightGreen
+    )
   ]);
 
   Card familyHistoryCard() => defaultCard('Family Medical History', [
@@ -244,7 +263,23 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(1900),
-        lastDate: DateTime.now());
+        lastDate: DateTime.now(),
+        builder: (context, child) => Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Colors.lightGreen,
+              onPrimary: Colors.white, // header text color
+              onSurface: Colors.lightGreen, // body text color
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.lightGreen
+              ),
+            ),
+          ),
+          child: child!,
+        )
+    );
     final birthday = _birthday!;
     birthdayEditingController.text =
     '${birthday.year}-${birthday.month}-${birthday.day}';
@@ -255,9 +290,8 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
   Future<void> _pickGenderDialog(BuildContext context) async {
     await showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          backgroundColor: Colors.lightBlue[200],
-          title: const Text('Select your gender'),
+        builder: (context) => SizedBox(width: 70, child: AlertDialog(
+          backgroundColor: Colors.lightGreen,
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -265,7 +299,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                     value: true,
                     groupValue: isMale,
                     title: const Text('Male'),
-                    activeColor: Colors.blue,
+                    activeColor: Colors.white,
                     onChanged: (val) {
                       setState(() => isMale = val!);
                       Navigator.pop(context);
@@ -275,14 +309,14 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                     value: false,
                     groupValue: isMale,
                     title: const Text('Female'),
-                    activeColor: Colors.blue,
+                    activeColor: Colors.white,
                     onChanged: (val) {
                       setState(() => isMale = val!);
                       Navigator.pop(context);
                     }
                 ),
               ]),
-        ));
+        )));
     genderEditingController.text = isMale ? 'Male' : 'Female';
   }
 
@@ -327,7 +361,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
   }
 
   void nextPage() => pageController.nextPage(
-      duration: const Duration(microseconds: 1000),
-      curve: Curves.bounceInOut
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeIn
   );
 }

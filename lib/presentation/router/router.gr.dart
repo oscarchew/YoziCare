@@ -99,6 +99,13 @@ class AppRouter extends _i10.RootStackRouter {
           guards: [checkIfAlreadyLoggedIn],
           children: [
             _i10.RouteConfig(
+              '#redirect',
+              path: '',
+              parent: HomePageRoute.name,
+              redirectTo: 'egfr',
+              fullMatch: true,
+            ),
+            _i10.RouteConfig(
               EgfrRoute.name,
               path: 'egfr',
               parent: HomePageRoute.name,

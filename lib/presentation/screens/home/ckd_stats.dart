@@ -68,47 +68,42 @@ class _EgfrScreenState extends State<EgfrScreen> {
   Widget build(BuildContext context) {
     getRecentEgfrHistory();
     getRecentHydrationHistory();
-    return Column(children: [
-      SizedBox(height: AppBar().preferredSize.height),
-      Expanded(child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+    return Center(child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 400,
+          height: 500,
+          child: PageView(
+            controller: PageController(viewportFraction: 0.85),
             children: [
-              SizedBox(
-                width: 400,
-                height: 500,
-                child: PageView(
-                  controller: PageController(viewportFraction: 0.85),
-                  children: [
-                    Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        egfrCard(),
-                        Positioned(
-                            bottom: 20,
-                            right: 20,
-                            child: egfrFAB()
-                        )
-                      ],
-                    ),
-                    Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        hydrationCard(),
-                        Positioned(
-                            bottom: 20,
-                            right: 20,
-                            child: hydrationFAB()
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              )],
-          )),
-      )
-    ]);
+              Stack(
+                fit: StackFit.expand,
+                children: [
+                  egfrCard(),
+                  Positioned(
+                      bottom: 20,
+                      right: 20,
+                      child: egfrFAB()
+                  )
+                ],
+              ),
+              Stack(
+                fit: StackFit.expand,
+                children: [
+                  hydrationCard(),
+                  Positioned(
+                      bottom: 20,
+                      right: 20,
+                      child: hydrationFAB()
+                  )
+                ],
+              ),
+            ],
+          ),
+        )],
+    ));
   }
 
   Card egfrCard () => Card(
@@ -466,9 +461,9 @@ class _EgfrScreenState extends State<EgfrScreen> {
 ✅ Use phosphate binders
 ✅ Low-protein diet"""
       : """
-✅ Medications for loss of appetite and nausea
+✅ Medications for loss of appetite
 ✅ Erythropoietin or Iron for anemia
-✅ Prevention of hyperkalemia
 ✅ Prevention of pulmonary edema
+✅ Prevention of hyperkalemia
 ✅ Kidney transplantation""";
 }

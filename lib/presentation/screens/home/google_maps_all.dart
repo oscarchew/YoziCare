@@ -290,7 +290,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
               ),),),
           // 顯示個人位置
           Positioned(
-            bottom: 10,
+            bottom: 70,
             right: 3,
             child: FloatingActionButton(
               onPressed: () async { // jump to current location

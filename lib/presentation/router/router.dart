@@ -34,7 +34,8 @@ class CheckIfAlreadyLoggedIn extends AutoRouteGuard {
         children: [
           AutoRoute(
               path: 'egfr',
-              page: EgfrScreen
+              page: EgfrScreen,
+              initial: true
           ),
           // Not yet implemented
           AutoRoute(

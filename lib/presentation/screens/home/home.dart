@@ -11,9 +11,9 @@ class HomePageScreen extends StatelessWidget {
   Widget build(BuildContext context) => AutoTabsScaffold(
       backgroundColor: Colors.white,
       routes: const [
-        EgfrRoute(),
         FoodAnalysisRoute(),
         GoogleMapsRoute(),
+        EgfrRoute(),
         ChatbotRoute(),
         MyDataRoute()
       ],
@@ -26,6 +26,22 @@ class HomePageScreen extends StatelessWidget {
         onTap: tabsRouter.setActiveIndex,
         items: [
           SalomonBottomBarItem(
+            selectedColor: Colors.lightGreen[800],
+            icon: const Icon(
+              Icons.food_bank,
+              size: 25,
+            ),
+            title: const Text('My Food'),
+          ),
+          SalomonBottomBarItem(
+            selectedColor: Colors.lightGreen[300],
+            icon: const Icon(
+              Icons.map,
+              size: 25,
+            ),
+            title: const Text('CKD Map'),
+          ),
+          SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
             icon: const Icon(
               Icons.auto_graph,
@@ -34,23 +50,7 @@ class HomePageScreen extends StatelessWidget {
             title: const Text('CKD Stats'),
           ),
           SalomonBottomBarItem(
-            selectedColor: Colors.amber,
-            icon: const Icon(
-              Icons.food_bank,
-              size: 25,
-            ),
-            title: const Text('My Food'),
-          ),
-          SalomonBottomBarItem(
-            selectedColor: Colors.redAccent,
-            icon: const Icon(
-              Icons.map,
-              size: 25,
-            ),
-            title: const Text('CKD Map'),
-          ),
-          SalomonBottomBarItem(
-            selectedColor: Colors.brown,
+            selectedColor: Colors.lightGreen[300],
             icon: const Icon(
               Icons.chat,
               size: 25,
@@ -58,7 +58,7 @@ class HomePageScreen extends StatelessWidget {
             title: const Text('Chatbot'),
           ),
           SalomonBottomBarItem(
-            selectedColor: Colors.blue[200],
+            selectedColor: Colors.lightGreen[800],
             icon: const Icon(
               Icons.assignment_outlined,
               size: 25,

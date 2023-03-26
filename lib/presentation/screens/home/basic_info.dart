@@ -35,7 +35,7 @@ class _MyDataScreenState extends State<MyDataScreen> {
             ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.lightBlue[200]
+                    backgroundColor: Colors.lightGreen
                 ),
                 onPressed: _signOut,
                 icon: const Icon(Icons.logout),
@@ -61,6 +61,10 @@ class _MyDataScreenState extends State<MyDataScreen> {
       content: 'Do you really want to sign out?',
       actions: [
         ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.lightGreen
+            ),
             child: const Text('Yes'),
             onPressed: () {
               authorizationRepository.signOut();
@@ -68,6 +72,10 @@ class _MyDataScreenState extends State<MyDataScreen> {
             }
         ),
         ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.lightGreen
+            ),
             child: const Text('No'),
             onPressed: () => Navigator.pop(context)
         ),
@@ -81,8 +89,9 @@ class _MyDataScreenState extends State<MyDataScreen> {
   }) async => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-          title: Text(title),
-          content: Text(content),
+          backgroundColor: Colors.lightGreen[200],
+          title: Text(title, style: const TextStyle(color: Colors.white)),
+          content: Text(content, style: const TextStyle(color: Colors.white)),
           actions: actions
       )
   );
