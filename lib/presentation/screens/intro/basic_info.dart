@@ -16,43 +16,228 @@ class BasicInfoScreen extends StatefulWidget {
 
 class _BasicInfoScreenState extends State<BasicInfoScreen> {
 
-  final firestoreBasicRepository = FirestoreBasicFieldRepository('users');
-  final firestoreArrayRepository = FirestoreArrayFieldRepository('users');
+  final firestoreBasicFieldRepository = FirestoreBasicFieldRepository('users');
+  final firestoreArrayFieldRepository = FirestoreArrayFieldRepository('users');
 
+  final pageController = PageController(
+      initialPage: 0,
+      viewportFraction: 0.85
+  );
+  var pageIndex = 0;
+
+  // basicInfoCard()
   final genderEditingController = TextEditingController();
   final birthdayEditingController = TextEditingController();
   final weightEditingController = TextEditingController();
-
   DateTime? _birthday;
   bool isMale = true;
 
+  // familyHistoryCard()
+  final familyHistory = {
+    for (var history in [
+      'polycystic',
+      'igAN',
+      'liddle',
+      'others'
+    ]) history: false
+  };
+
+  // personalHistoryCard()
+  final personalHistory = {
+    for (var history in [
+      'diabetes',
+      'hypertension',
+      'hyperuricemia',
+      'gout',
+      'hematuria',
+      'proteinuria',
+      'renalColic',
+      'frequentUrination'
+    ]) history: false
+  };
+
+  // personalHabits()
+  final personalHabits = {
+    for (var history in [
+      'painkillerAbuse',
+      'antibioticsAbuse',
+      'smoking',
+      'drinking'
+    ]) history: false
+  };
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(body: Center(child: Column(
+      children: [
+        SizedBox(
+          width: 400,
+          height: 500,
+          child: PageView(
+              controller: pageController,
+              onPageChanged: (index) => setState(() => pageIndex = index),
               children: [
-                SharedStatefulWidget.addSizedOutlinedTextField(
-                    readOnly: true,
-                    onTap: _pickGender,
-                    controller: genderEditingController,
-                    labelText: 'Gender'),
-                const SizedBox(height: 20),
-                SharedStatefulWidget.addSizedOutlinedTextField(
-                    readOnly: true,
-                    onTap: _pickDate,
-                    controller: birthdayEditingController,
-                    labelText: 'Birthday'),
-                const SizedBox(height: 20),
-                SharedStatefulWidget.addSizedOutlinedTextField(
-                    controller: weightEditingController,
-                    labelText: 'Weight'),
-                const SizedBox(height: 20),
-                ElevatedButton(onPressed: _submit, child: const Text('Next'))
-              ],
-            )));
+                basicInfoCard(),
+                familyHistoryCard(),
+                personalHistoryCard(),
+                personalHabitCard()
+              ]
+          ),
+        ),
+        ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.lightBlue[200]
+            ),
+            onPressed: _submitAndGoNextPage,
+            icon: const Icon(Icons.navigate_next),
+            label: const Text('Next')
+        )
+      ],
+    )));
   }
+
+  Card defaultCard(String title, List<Widget> widgets) => Card(
+    color: Colors.lightBlue.withOpacity(0.1),
+    shadowColor: Colors.transparent,
+    surfaceTintColor: Colors.transparent,
+    clipBehavior: Clip.hardEdge,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20)
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          color: Colors.lightBlue,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Center(child: Text(title)),
+          ),
+        ), ...widgets
+      ],
+    ),
+  );
+
+  Card basicInfoCard() => defaultCard('Basic Info', [
+    SharedStatefulWidget.addSizedOutlinedTextField(
+        readOnly: true,
+        onTap: _pickGender,
+        controller: genderEditingController,
+        labelText: 'Gender'),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedOutlinedTextField(
+        readOnly: true,
+        onTap: _pickDate,
+        controller: birthdayEditingController,
+        labelText: 'Birthday'),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedOutlinedTextField(
+        controller: weightEditingController,
+        labelText: 'Weight')
+  ]);
+
+  Card familyHistoryCard() => defaultCard('Family Medical History', [
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Polycystic kidney disease',
+        state: familyHistory,
+        field: 'polycystic'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Immunoglobulin A nephropathy (IgAN)',
+        state: familyHistory,
+        field: 'igAN'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Liddle\'s syndrome',
+        state: familyHistory,
+        field: 'liddle'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Others',
+        state: familyHistory,
+        field: 'others'
+    ),
+  ]);
+
+  Card personalHistoryCard() => defaultCard('Personal Medical History', [
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Diabetes',
+        state: personalHistory,
+        field: 'diabetes'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Hypertension',
+        state: personalHistory,
+        field: 'hypertension'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Hyperuricemia',
+        state: personalHistory,
+        field: 'hyperuricemia'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Metabolic Arthritis, Gout',
+        state: personalHistory,
+        field: 'gout'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Hematuria',
+        state: personalHistory,
+        field: 'hematuria'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Proteinuria',
+        state: personalHistory,
+        field: 'proteinuria'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Renal colic',
+        state: personalHistory,
+        field: 'renalColic'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Frequent urination',
+        state: personalHistory,
+        field: 'frequentUrination'
+    ),
+  ]);
+
+  Card personalHabitCard() => defaultCard('Personal Habits', [
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Painkiller abuse',
+        state: personalHabits,
+        field: 'painkillerAbuse'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Antibiotics abuse',
+        state: personalHabits,
+        field: 'antibioticsAbuse'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Smoking',
+        state: personalHabits,
+        field: 'smoking'
+    ),
+    const SizedBox(height: 20),
+    SharedStatefulWidget.addSizedCheckBox(
+        title: 'Drinking',
+        state: personalHabits,
+        field: 'drinking'
+    )
+  ]);
 
   void _pickDate() async {
     _birthday = await showDatePicker(
@@ -71,6 +256,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
     await showDialog(
         context: context,
         builder: (context) => AlertDialog(
+          backgroundColor: Colors.lightBlue[200],
           title: const Text('Select your gender'),
           content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -100,18 +286,48 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
     genderEditingController.text = isMale ? 'Male' : 'Female';
   }
 
-  Future _submit() async {
-    if (_birthday == null || weightEditingController.text.isEmpty) {
-      context.showSnackbar('Please fill in all the values!');
+  Future<void> _submitAndGoNextPage() async {
+    switch (pageIndex) {
+      case 0:
+        if (_birthday == null || weightEditingController.text.isEmpty) {
+          context.showSnackbar('Please fill in all the values!');
+          break;
+        }
+        await firestoreBasicFieldRepository.update(
+            dataType: DataType.healthData,
+            json: {
+              'gender': (isMale ? 'Male' : 'Female'),
+              'birthday': Timestamp.fromDate(_birthday!),
+              'weight': double.parse(weightEditingController.text)
+            });
+        nextPage();
+        break;
+      case 1:
+        await firestoreBasicFieldRepository.update(
+            dataType: DataType.healthData,
+            json: familyHistory
+        );
+        nextPage();
+        break;
+      case 2:
+        await firestoreBasicFieldRepository.update(
+            dataType: DataType.healthData,
+            json: personalHistory
+        );
+        nextPage();
+        break;
+      default:
+        await firestoreBasicFieldRepository.update(
+            dataType: DataType.healthData,
+            json: personalHistory
+        );
+        context.router.replaceNamed('/');
+        break;
     }
-    await firestoreBasicRepository.update(
-        dataType: DataType.healthData,
-        json: {
-          'gender': (isMale ? 'Male' : 'Female'),
-          'birthday': Timestamp.fromDate(_birthday!),
-          'weight': double.parse(weightEditingController.text)
-        });
-    context.router.replaceNamed('/family-history');
   }
-}
 
+  void nextPage() => pageController.nextPage(
+      duration: const Duration(microseconds: 1000),
+      curve: Curves.bounceInOut
+  );
+}

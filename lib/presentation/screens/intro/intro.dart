@@ -18,12 +18,16 @@ class _IntroScreenState extends State<IntroScreen> {
   final firestoreRepository = FirestoreArrayFieldRepository('users');
 
   @override
-  Future<void> initState() async {
-    await initializeEGFR();
-    await initializeHydration();
-    await initializeUrination();
+  void initState() {
+    initializeArrayFields();
     super.initState();
   }
+
+  Future<void> initializeArrayFields() async => Future.wait([
+      initializeEGFR(),
+      initializeHydration(),
+      initializeUrination(),
+  ]);
 
   @override
   Widget build(BuildContext context) => Scaffold(

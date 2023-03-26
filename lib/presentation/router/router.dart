@@ -7,9 +7,6 @@ import '../screens/home/home.dart';
 import '../screens/home/basic_info.dart';
 import '../screens/intro/intro.dart';
 import '../screens/intro/basic_info.dart';
-import '../screens/intro/family_history.dart';
-import '../screens/intro/personal_habits.dart';
-import '../screens/intro/personal_history.dart';
 import '../screens/home/ckd_stats.dart';
 import '../screens/login.dart';
 
@@ -72,18 +69,6 @@ class CheckIfAlreadyLoggedIn extends AutoRouteGuard {
         path: '/basic-info',
         page: BasicInfoScreen
     ),
-    AutoRoute(
-        path: '/family-history',
-        page: FamilyHistoryScreen
-    ),
-    AutoRoute(
-        path: '/personal-history',
-        page: PersonalHistoryScreen
-    ),
-    AutoRoute(
-        path: '/personal-habits',
-        page: PersonalHabitsScreen
-    )
   ],
 )
 class $AppRouter {}
