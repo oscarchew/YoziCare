@@ -19,17 +19,24 @@ class AddFoodBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
-    if(this.response['result']['Calories from Fat'] == null){
-      this.response['result']['Calories from Fat'] = 0.0;
+    if(this.isFood){
+      if(this.response['result'] == null){
+        this.response['result'] = [];
+      }
     }
-    if(this.response['result']['Carbohydrate'] == null){
-      this.response['result']['Carbohydrate'] = 0.0;
-    }
-    if(this.response['result']['Saturated Fat'] == null){
-      this.response['result']['Saturated Fat'] = 0.0;
-    }
-    if(this.response['result']['Protein'] == null){
-      this.response['result']['Protein'] = 0.0;
+    else{
+      if(this.response['result']['Calories from Fat'] == null){
+        this.response['result']['Calories from Fat'] = 0.0;
+      }
+      if(this.response['result']['Carbohydrate'] == null){
+        this.response['result']['Carbohydrate'] = 0.0;
+      }
+      if(this.response['result']['Saturated Fat'] == null){
+        this.response['result']['Saturated Fat'] = 0.0;
+      }
+      if(this.response['result']['Protein'] == null){
+        this.response['result']['Protein'] = 0.0;
+      }
     }
 
 

@@ -24,10 +24,10 @@ class CalorieStatistics extends StatelessWidget {
   // CalorieStatistics(this.response);
 
   // 設定一日攝取總量
-  final double nor_carbs = 1000000;
-  final double nor_fat = 100000;
-  final double nor_protein = 700000;
-  final double nor_cal = 2500000;
+  final double nor_carbs = 300;
+  final double nor_fat = 78;
+  final double nor_protein = 56;
+  final double nor_cal = 2500;
 
   @override
   Widget build(BuildContext context) {
