@@ -15,15 +15,32 @@ class CalorieStatistics extends StatelessWidget {
   final double carbs;
   final double fat;
   final double protein;
+  var response;
 
+  // 如果為空設為0
   CalorieStatistics(this.calories,this.carbs, this.fat, this.protein);
+
+
+  // CalorieStatistics(this.response);
+
+  // 設定一日攝取總量
+  final double nor_carbs = 1000000;
+  final double nor_fat = 100000;
+  final double nor_protein = 700000;
+  final double nor_cal = 2500000;
 
   @override
   Widget build(BuildContext context) {
 
-    final double nor_carbs = 225;
-    final double nor_fat = 10;
-    final double nor_protein = 70;
+    // if(fat == null){
+    //   fat = 0;
+    // }
+    // if(protein == null){
+    //   protein = 0;
+    // }
+    // if(carbs == null){
+    //   carbs = 0;
+    // }
     return Column(
       children: [
         AspectRatio(
@@ -89,7 +106,6 @@ class CalorieStatistics extends StatelessWidget {
   }
 
   Widget _calorieStatistics() {
-    final double nor_cal = 2500;
     return Expanded(
       child: Container(
         padding: EdgeInsets.all(20),
