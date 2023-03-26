@@ -25,17 +25,15 @@ class AddFoodBody extends StatelessWidget {
       }
     }
     else{
-      if(this.response['result']['Calories from Fat'] == null){
-        this.response['result']['Calories from Fat'] = 0.0;
+      for (var key in this.response['result'].keys) {
+        if (this.response['result'][key] is List) {
+          this.response['result'][key] = this.response['result'][key][0];
+        }
       }
-      if(this.response['result']['Carbohydrate'] == null){
-        this.response['result']['Carbohydrate'] = 0.0;
-      }
-      if(this.response['result']['Saturated Fat'] == null){
-        this.response['result']['Saturated Fat'] = 0.0;
-      }
-      if(this.response['result']['Protein'] == null){
-        this.response['result']['Protein'] = 0.0;
+      for (var key in ['Calories from Fat', 'Carbohydrate', 'Saturated Fat', 'Protein'])  {
+        if (this.response['result'][key] == null) {
+          this.response['result'][key] = 0.0;
+        }
       }
     }
 
