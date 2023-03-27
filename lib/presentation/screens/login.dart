@@ -22,11 +22,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                      'Welcome to CKD Care!'
+                      'Welcome to YoziCare!'
                   ),
-                  ElevatedButton(
+                  ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Colors.lightGreen
+                      ),
                       onPressed: _signInWithGoogle,
-                      child: const Text('Sign in with Google')
+                      icon: const Icon(Icons.login),
+                      label: const Text('Sign in')
                   )
                 ]
             )
