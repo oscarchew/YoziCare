@@ -21,6 +21,14 @@ class FirestoreArrayFieldRepository extends FirestoreRepositoryImpl {
   });
 
   @override
+  Future<void> addMultiple({
+    required List<DataType> dataTypes,
+    required List<Map<String, Object>> jsons
+  }) async => await document.set({
+    for (var dataType in dataTypes) dataType.name: []
+  });
+
+  @override
   Future<void> deleteType({
     required DataType dataType
   }) async => await document.update({

@@ -19,15 +19,12 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   void initState() {
-    initializeArrayFields();
+    firestoreRepository.addMultiple(
+        dataTypes: [DataType.eGFR, DataType.hydration, DataType.urination],
+        jsons: []
+    );
     super.initState();
   }
-
-  Future<void> initializeArrayFields() async => Future.wait([
-      initializeEGFR(),
-      initializeHydration(),
-      initializeUrination(),
-  ]);
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -39,20 +36,17 @@ class _IntroScreenState extends State<IntroScreen> {
               const Text('Before we start, please fill out some information.'),
               const Text('(All the information can be edited afterwards.)'),
               const SizedBox(height: 20),
-              ElevatedButton(
+              ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.lightGreen
+                  ),
                   onPressed: () => context.router.replaceNamed('/basic-info'),
-                  child: const Text('Next'))
+                  icon: const Icon(Icons.navigate_next),
+                  label: const Text('Next')
+              ),
             ],
           )
       )
   );
-
-  Future<void> initializeEGFR() async =>
-      await firestoreRepository.add(dataType: DataType.eGFR);
-
-  Future<void> initializeHydration() async =>
-      await firestoreRepository.add(dataType: DataType.hydration);
-
-  Future<void> initializeUrination() async =>
-      await firestoreRepository.add(dataType: DataType.urination);
 }

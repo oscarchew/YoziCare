@@ -21,6 +21,14 @@ class FirestoreBasicFieldRepository extends FirestoreRepositoryImpl {
   });
 
   @override
+  Future<void> addMultiple({
+    required List<DataType> dataTypes,
+    required List<Map<String, Object>> jsons
+  }) async => await document.set(
+      Map.fromIterables(dataTypes, jsons)
+  );
+
+  @override
   Future<void> update({
     required DataType dataType,
     required Map<String, Object> json
