@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gdsc/presentation/screens/home/food_analysis_screen.dart';
 import 'image_picker_page.dart';
 
 class FoodAnalysisScreen extends StatelessWidget {
