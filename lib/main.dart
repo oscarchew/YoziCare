@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
   static const String title = 'CKD Care';
 
   @override
+
   Widget build(BuildContext context) => MaterialApp.router(
     title: title,
     theme: ThemeData(

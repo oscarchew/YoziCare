@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gdsc/screen/google_maps_all.dart';
 
 import '../../../infrastructure/google_auth/google_auth_repo.dart';
+import '../../../screen/food_analysis_screen.dart';
 
 class HomeScreen extends StatefulWidget {
 
@@ -41,10 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () => context.router.pushNamed(''),
           ),
           ListTile(
-            title: const Text('Hydration analysis'),
+            title: const Text('Food screen'),
             onTap: () {
-
-            },
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
+                return const AddFoodBody();
+              }));
+             },
           ),
           ListTile(
             title: const Text('Map'),

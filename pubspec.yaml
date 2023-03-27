@@ -53,6 +53,11 @@ dependencies:
   http: ^0.13.5
   flip_card: ^0.7.0
   flutter_rating_stars: ^1.0.3+4
+  # UI
+  flutter_screenutil: ^5.7.0
+  font_awesome_flutter: ^10.4.0
+  dot_navigation_bar: ^1.0.1+4
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +86,7 @@ flutter:
   # for googlemap
   assets:
     - assets/mapicons/
+    - assets/images/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
