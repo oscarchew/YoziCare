@@ -19,16 +19,19 @@ class AddFoodBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
+    print("/////////////////");
+    print(this.isFood);
+    print("/////////////////");
     if(this.isFood){
       if(this.response['result'] == null){
         this.response['result'] = [];
       }
     }
     else{
+      print("####################");
       for (var key in this.response['result'].keys) {
         if (this.response['result'][key] is List) {
           if (this.response['result'][key][1] == 'mg')  {
-            print("####################");
             this.response['result'][key][0] = this.response['result'][key][0] / 1000;
           }
           this.response['result'][key] = this.response['result'][key][0];
