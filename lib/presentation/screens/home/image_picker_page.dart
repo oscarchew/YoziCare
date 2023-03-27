@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:gdsc/screen/food_analysis_screen.dart';
+import 'package:gdsc/presentation/screens/home/food_analysis_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
@@ -18,35 +18,47 @@ class ImagePickerPage extends StatefulWidget {
 class _ImagePickerPageState extends State<ImagePickerPage> {
   File? _image;
 
-  Future getImage(bool isCamera) async {
-    final pickedFile = await ImagePicker().pickImage(
-      source: isCamera ? ImageSource.camera : ImageSource.gallery,
-    );
 
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
+  Future getImage(bool isCamera) async {
+      bool isFood;
+      final pickedFile = await ImagePicker().pickImage(
+        source: isCamera ? ImageSource.camera : ImageSource.gallery,
+      );
+
+      if (pickedFile != null) {
+        setState(() {
+          _image = File(pickedFile.path);
+        });
 
       // 上傳圖片到 Cloud Run
       FormData formData = FormData.fromMap({
         'file': await MultipartFile.fromFile(_image!.path),
       });
 
-      try {
-        final response = await Dio().post(
-          widget.cloudRunUrl,
-          data: formData,
-        );
-
-        // 跳轉到結果頁面
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddFoodBody(_image!, response.data.toString())),
-        );
-      } catch (e) {
-        print('Error: $e');
+      // URL決定是哪個服務
+      if (widget.cloudRunUrl == 'https://foodanalysis-z5zukxh7ha-df.a.run.app'){
+        isFood = true; // 食物成分分析
       }
+      else{
+        isFood = false; // 食物營養成分標籤
+      }
+
+
+    try {
+      final response = await Dio().post(
+        widget.cloudRunUrl,
+        data: formData,
+      );
+
+      // 跳轉到結果頁面 command for testing
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => AddFoodBody(isFood, _image!, response.data)), // 修改跳轉頁面
+      );
+      print(response.data);
+    } catch (e) {
+      print('Error: $e');
+    }
     }
   }
 
