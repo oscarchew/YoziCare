@@ -11,23 +11,25 @@ class CalorieStatistics extends StatelessWidget {
   //   Key ? key
   // }): super(key: key);
 
-  final double calories;
+  //final double calories;
   final double carbs;
+  final double sodium;
   final double fat;
   final double protein;
   var response;
 
   // 如果為空設為0
-  CalorieStatistics(this.calories,this.carbs, this.fat, this.protein);
+  CalorieStatistics(this.carbs, this.sodium, this.fat, this.protein);
 
 
   // CalorieStatistics(this.response);
 
   // 設定一日攝取總量
   final double nor_carbs = 300;
-  final double nor_fat = 78;
-  final double nor_protein = 56;
-  final double nor_cal = 2500;
+  final double nor_sodium = 2;
+  final double nor_fat = 70;
+  final double nor_protein = 84;
+  //final double nor_cal = 2500;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +79,7 @@ class CalorieStatistics extends StatelessWidget {
                 statisticsTile(
                   title: 'Proteins',
                   icon: FaIcon(
-                    FontAwesomeIcons.pizzaSlice,
+                    FontAwesomeIcons.cloudMeatball,
                     color: Colors.blue,
                   ),
                   progressColor: Colors.blue,
@@ -121,7 +123,7 @@ class CalorieStatistics extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Calories',
+                  'Sodium',
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -143,7 +145,7 @@ class CalorieStatistics extends StatelessWidget {
                     animation: true,
                     lineHeight: 6,
                     animationDuration: 2500,
-                    percent: this.calories/nor_cal, //0.6,
+                    percent: this.sodium/nor_sodium, //0.6,
                     barRadius: Radius.circular(3),
                     progressColor: Colors.white,
                     padding: EdgeInsets.zero,
@@ -155,7 +157,7 @@ class CalorieStatistics extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      this.calories.toString(), //'149',
+                      this.sodium.toString(), //'149',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20. sp,
