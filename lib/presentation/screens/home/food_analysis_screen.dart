@@ -27,10 +27,14 @@ class AddFoodBody extends StatelessWidget {
     else{
       for (var key in this.response['result'].keys) {
         if (this.response['result'][key] is List) {
+          if (this.response['result'][key][1] == 'mg')  {
+            print("####################");
+            this.response['result'][key][0] = this.response['result'][key][0] / 1000;
+          }
           this.response['result'][key] = this.response['result'][key][0];
         }
       }
-      for (var key in ['Calories from Fat', 'Carbohydrate', 'Saturated Fat', 'Protein'])  {
+      for (var key in ['Total Carb.', 'Sodium', 'Saturated Fat', 'Protein'])  {
         if (this.response['result'][key] == null) {
           this.response['result'][key] = 0.0;
         }
@@ -55,8 +59,8 @@ class AddFoodBody extends StatelessWidget {
             FoodCategories(this.response['result']) // True: 執行食物分析
             :
             CalorieStatistics(
-                this.response['result']['Calories from Fat'],
-                this.response['result']['Carbohydrate'],
+                this.response['result']['Total Carb.'],
+                this.response['result']['Sodium'],
                 this.response['result']['Saturated Fat'],
                 this.response['result']['Protein']),
             // CalorieStatistics(1500,80,5,15), // False: 執行營養素標籤分析
