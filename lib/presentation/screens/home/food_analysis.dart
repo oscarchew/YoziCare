@@ -13,7 +13,7 @@ class FoodAnalysisScreen extends StatelessWidget {
           _buildFeatureCard(
               context,
               'Food composition analysis',
-              'https://ana-z5zukxh7ha-df.a.run.app',
+              'https://foodanalysis-z5zukxh7ha-df.a.run.app',
               Icons.analytics
           ),
           const SizedBox(height: 20),
