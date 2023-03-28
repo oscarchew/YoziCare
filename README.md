@@ -41,9 +41,11 @@ There is a bug in the chatbot's underlying program that needs to be resolved by 
 - [off-nutrition-table-extractor](https://github.com/openfoodfacts/off-nutrition-table-extractor)
 - [Inverse Cooking: Recipe Generation from Food Images](https://github.com/facebookresearch/inversecooking)
 
-## Q&A
-- Post your question under issues
-- Contact us:
+## Contact us
+- personal info. 1
+- 2
+- 3
+- 4
 
 
 
