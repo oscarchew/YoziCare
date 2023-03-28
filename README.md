@@ -1,4 +1,15 @@
-# Solution Challenge
+# Solution Challenge - Health Platform for Patients with Nephropathy 
+
+## Introduction
+Our platform provides a convenient way for people to assess their risk of kidney disease and keep track of their dietary habits with automated analysis. Patients can easily record their food intake and receive personalized insights, while also accessing professional support for any kidney-related concerns.
+
+
+## Installation instructions and dependencies
+
+
+
+## Features and functionalities
+
 
 ## Timeline
 - Pre-demo meeting (3/5 or 3/6)
