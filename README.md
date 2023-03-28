@@ -5,7 +5,12 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 ## Installation instructions and dependencies
 
-### LINUX
+### Usage
+
+To start working on this project, you should clone this repository into your local machine by using the following command.
+```bash
+git clone 
+```
 
 ⚠️ ***IMPORTANT*** ⚠️ 
 There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
@@ -18,7 +23,6 @@ to
 
 > override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray): Boolean {
 
-### WINDOWS 10
 
 
 ## Features and functionalities
