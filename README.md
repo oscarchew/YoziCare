@@ -27,10 +27,10 @@ flutter pub get
 
 ⚠️ ***IMPORTANT*** ⚠️
 There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
-1. 
-- if your system is LINUX, open /home/devpc/.pub-cache/hosted/pub.dartlang.org/sound_stream-0.3.0/android/src/main/kotlin/vn/casperpas/sound_stream/SoundStreamPlugin.kt
-- if your system is WINDOWS 10, open C:Users|ITDIAppDatalLocal|Pub|Cache|hosted\pub.devIsound_stream-0.3. 01android|srcimainIkotTinIvnIcasperpasIsound_stream|SoundStreamplugin.kt
-4. find **onRequestPermissionsResult**, and delete **two** question marks(?).
+1. open SoundStreamPlugin.kt
+- if your system is LINUX, go to the path : /home/devpc/.pub-cache/hosted/pub.dartlang.org/sound_stream-0.3.0/android/src/main/kotlin/vn/casperpas/sound_stream/SoundStreamPlugin.kt
+- if your system is WINDOWS 10, go to the path :  C:Users|ITDIAppDatalLocal|Pub|Cache|hosted\pub.devIsound_stream-0.3. 01android|srcimainIkotTinIvnIcasperpasIsound_stream|SoundStreamplugin.kt
+2. find **onRequestPermissionsResult**, and delete **two** question marks(?).
 
 > override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray?): Boolean {
 
