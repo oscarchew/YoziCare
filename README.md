@@ -7,6 +7,7 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 ### LINUX
 
+There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
 
 ### WINDOWS 10
 
