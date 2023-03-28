@@ -13,6 +13,8 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 ### Usage
 
+#### LINUX
+
 1. To start working on this project, you should clone this repository into your local machine by using the following command.
 ```bash
 git clone https://github.com/oscarchew/kidney.git
@@ -25,7 +27,7 @@ flutter pub get
 ```
 4. Finally, run main.dart to execute the program. 
 
-⚠️ ***IMPORTANT*** ⚠️ 
+⚠️ ***IMPORTANT*** ⚠️
 There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
 1. open /home/devpc/.pub-cache/hosted/pub.dartlang.org/sound_stream-0.3.0/android/src/main/kotlin/vn/casperpas/sound_stream/SoundStreamPlugin.kt 
 2. find **onRequestPermissionsResult**, and delete **two** question marks(?).
@@ -36,8 +38,32 @@ to
 
 > override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray): Boolean {
 
+#### WINDOWS 10
+1. To start working on this project, you should clone this repository into your local machine by using the following command.
+```bash
+git clone https://github.com/oscarchew/kidney.git
+```
 
+2. Please install the recommended version of Android Studio and set up the appropriate environment before opening the project.
+3. After setting up the environment, please enter the following command in the terminal to install the package.
+```bash
+flutter pub get
+```
+4. Finally, run main.dart to execute the program. 
 
+⚠️ ***IMPORTANT*** ⚠️
+There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
+1. open C:Users|ITDIAppDatalLocal|Pub|Cache|hosted\pub.devIsound_stream-0.3. 01android|srcimainIkotTinIvnIcasperpasIsound_stream|SoundStreamplugin.kt 
+2. find **onRequestPermissionsResult**, and delete **two** question marks(?).
+
+> override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray?): Boolean {
+
+to 
+
+> override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray): Boolean {
+
+  
+  
 ## Features and functionalities
 - **Chronic kidney disease map** : To make it easier for kidney disease patients to travel throughout Taiwan, we have created a map of dialysis centers that enables patients to quickly locate the nearest center in each county or city. We are using the Google Maps API to provide distance estimation and navigation services, and have also added location-specific information to facilitate appointment scheduling and contact.
 
