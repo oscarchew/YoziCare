@@ -5,12 +5,25 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 ## Installation instructions and dependencies
 
+### Android Studio Environment
+
+- Android Studio (2022.1.1)
+- Android SDK : Android 13.0 (Tiramisu), API LEVEL-33
+- install Flutter Dart plugin 
+
 ### Usage
 
-To start working on this project, you should clone this repository into your local machine by using the following command.
+1. To start working on this project, you should clone this repository into your local machine by using the following command.
 ```bash
 git clone https://github.com/oscarchew/kidney.git
 ```
+
+2. Please install the recommended version of Android Studio and set up the appropriate environment before opening the project.
+3. After setting up the environment, please enter the following command in the terminal to install the package.
+```bash
+flutter pub get
+```
+4. Finally, run main.dart to execute the program.
 
 ⚠️ ***IMPORTANT*** ⚠️ 
 There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
