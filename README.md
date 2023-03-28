@@ -12,18 +12,18 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 
 ## Features and functionalities
-- Chronic kidney disease map : To make it easier for kidney disease patients to travel throughout Taiwan, we have created a map of dialysis centers that enables patients to quickly locate the nearest center in each county or city. We are using the Google Maps API to provide distance estimation and navigation services, and have also added location-specific information to facilitate appointment scheduling and contact.
+- **Chronic kidney disease map : ** To make it easier for kidney disease patients to travel throughout Taiwan, we have created a map of dialysis centers that enables patients to quickly locate the nearest center in each county or city. We are using the Google Maps API to provide distance estimation and navigation services, and have also added location-specific information to facilitate appointment scheduling and contact.
 
-- Chronic kidney disease statistics : 
+- **Chronic kidney disease statistics : **
   - We conduct a preliminary assessment based on the user's family medical history, medication use, and lifestyle habits.
   - Using indicators such as glomerular filtration rate (GFR) and creatinine levels, we determine the stage of the disease and provide dietary recommendations based on the results (linked to the first point for condition identification). In addition to using Firebase or GCP APIs for analysis, we can also display changes in health status over time using line graphs.
   - Water intake is especially important for kidney disease patients, as it is highly correlated with urine output. Both can be uploaded to Firestore and relevant notifications can be pushed to Google Assistant via Firebase Cloud Messaging (FCM).
 
-- Chatbot : Users can ask questions related to kidney disease, and our chatbot will provide answers during the conversation. (e.g. "What are the symptoms of kidney disease?")
+- **Chatbot : **Users can ask questions related to kidney disease, and our chatbot will provide answers during the conversation. (e.g. "What are the symptoms of kidney disease?")
 
-- Food Composition Analysis : Users can upload a photo of their food or choose an existing photo from their gallery to analyze it on Google Cloud Run. The platform will then determine the composition of the food and analyze whether it's suitable for individuals with kidney disease to consume. The results of the analysis will be displayed for the user.
+- **Food Composition Analysis : **Users can upload a photo of their food or choose an existing photo from their gallery to analyze it on Google Cloud Run. The platform will then determine the composition of the food and analyze whether it's suitable for individuals with kidney disease to consume. The results of the analysis will be displayed for the user.
 
-- Nutrition Label Extraction : Users can upload a photo of a food label or select an existing photo from their gallery to analyze on Google Cloud Run. The platform will extract the content of the label and focus on the four components that kidney disease patients need to pay the most attention to - protein, fat, sodium, and carbohydrates. The platform will then calculate and display the remaining daily intake limit for each component for the user.
+- **Nutrition Label Extraction : **Users can upload a photo of a food label or select an existing photo from their gallery to analyze on Google Cloud Run. The platform will extract the content of the label and focus on the four components that kidney disease patients need to pay the most attention to - protein, fat, sodium, and carbohydrates. The platform will then calculate and display the remaining daily intake limit for each component for the user.
 
 ## Timeline
 - Pre-demo meeting (3/5 or 3/6)
