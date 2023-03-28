@@ -9,7 +9,7 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 To start working on this project, you should clone this repository into your local machine by using the following command.
 ```bash
-git clone 
+git clone https://github.com/oscarchew/kidney.git
 ```
 
 ⚠️ ***IMPORTANT*** ⚠️ 
