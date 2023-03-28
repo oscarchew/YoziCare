@@ -17,8 +17,8 @@ Our platform provides a convenient way for people to assess their risk of kidney
 - Chronic kidney disease statistics : 
 - Chatbot : 
 - Food Analysis
-  - Food Composition Analysis : 
-  - Nutrition Label Extraction : 
+  - Food Composition Analysis : Users can upload a photo of their food or choose an existing photo from their gallery to analyze it on Google Cloud Run. The platform will then determine the composition of the food and analyze whether it's suitable for individuals with kidney disease to consume. The results of the analysis will be displayed for the user.
+  - Nutrition Label Extraction : Users can upload a photo of a food label or select an existing photo from their gallery to analyze on Google Cloud Run. The platform will extract the content of the label and focus on the four components that kidney disease patients need to pay the most attention to - protein, fat, sodium, and carbohydrates. The platform will then calculate and display the remaining daily intake limit for each component for the user
 
 ## Timeline
 - Pre-demo meeting (3/5 or 3/6)
