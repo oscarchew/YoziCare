@@ -42,7 +42,7 @@ There is a bug in the chatbot's underlying program that needs to be resolved by 
 - [Inverse Cooking: Recipe Generation from Food Images](https://github.com/facebookresearch/inversecooking)
 
 ## Contact us
-- personal info. 1
+- 1
 - 2
 - 3
 - 4
