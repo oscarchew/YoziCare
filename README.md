@@ -13,7 +13,7 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 
 ## Features and functionalities
-- Chronic kidney disease map : 
+- Chronic kidney disease map : To make it easier for kidney disease patients to travel throughout Taiwan, we have created a map of dialysis centers that enables patients to quickly locate the nearest center in each county or city. We are using the Google Maps API to provide distance estimation and navigation services, and have also added location-specific information to facilitate appointment scheduling and contact.
 - Chronic kidney disease statistics : 
 - Chatbot : Users can ask questions related to kidney disease, and our chatbot will provide answers during the conversation. (e.g. "What are the symptoms of kidney disease?")
 - Food Analysis
