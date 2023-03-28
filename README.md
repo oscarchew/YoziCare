@@ -10,7 +10,7 @@ Our platform provides a convenient way for people to assess their risk of kidney
 ⚠️ ***IMPORTANT*** ⚠️ 
 There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
 1. open /home/devpc/.pub-cache/hosted/pub.dartlang.org/sound_stream-0.3.0/android/src/main/kotlin/vn/casperpas/sound_stream/SoundStreamPlugin.kt 
-2. find **onRequestPermissionsResult**, and delete **two** question marks(?).
+2. find **onRequestPermissionsResult**, and delete ++two++ question marks(?).
 
 > override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray?): Boolean {
 
