@@ -13,7 +13,9 @@ There is a bug in the chatbot's underlying program that needs to be resolved by 
 2. find **onRequestPermissionsResult**, and delete the question mark(?).
 
 > override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray?): Boolean {
+
 to 
+
 > override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray): Boolean {
 
 ### WINDOWS 10
