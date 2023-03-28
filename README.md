@@ -6,10 +6,19 @@ Our platform provides a convenient way for people to assess their risk of kidney
 
 ## Installation instructions and dependencies
 
+### LINUX
+
+
+### WINDOWS 10
 
 
 ## Features and functionalities
-
+- Chronic kidney disease map : 
+- Chronic kidney disease statistics : 
+- Chatbot : 
+- Food Analysis
+  - Food Composition Analysis : 
+  - Nutrition Label Extraction : 
 
 ## Timeline
 - Pre-demo meeting (3/5 or 3/6)
