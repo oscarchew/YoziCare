@@ -23,7 +23,8 @@ git clone https://github.com/oscarchew/kidney.git
 ```bash
 flutter pub get
 ```
-4. Finally, run main.dart to execute the program. 
+4. Place your Service Account Key associated with Dialogflow API under the directory assets/ and name it credentials.json
+5. Finally, run main.dart to execute the program. 
 
 ⚠️ ***IMPORTANT*** ⚠️
 There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
