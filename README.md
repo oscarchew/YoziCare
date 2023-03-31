@@ -24,7 +24,20 @@ git clone https://github.com/oscarchew/kidney.git
 flutter pub get
 ```
 4. Place your Service Account Key associated with Dialogflow API under the directory assets/ and name it credentials.json
-5. Finally, run main.dart to execute the program. 
+5. Add your API key related to Google Maps API in the following place
+- Go to `android/app/src/main/AndroidManifest.xml` line 46 and add your API key
+```
+<!-- Add for Google Map -->
+<meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="YOUR_APIKEY"/>
+```
+- Go to `lib/presentation/screens/home/google_maps_all.dart` line 26 and add your API key
+
+```
+String apiKey = "YOUR_APIKEY"; // API KEY
+```
+
+6. Finally, run main.dart to execute the program. 
 
 ⚠️ ***IMPORTANT*** ⚠️
 There is a bug in the chatbot's underlying program that needs to be resolved by following the steps below.
