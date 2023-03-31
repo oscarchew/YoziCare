@@ -74,10 +74,10 @@ to
 - [Inverse Cooking: Recipe Generation from Food Images](https://github.com/facebookresearch/inversecooking)
 
 ## Contact us
-- 1
-- 2
-- 3
-- 4
+- Oscar Chew oscarchew98@gmail.com
+- Hsieh, Tzu-Tsen yammy0623@gmail.com
+- Wei, Tzu-Shuo r10944006@csie.ntu.edu.tw
+- Lo, Hong-Yu b09602059@g.ntu.edu.tw
 
 
 
