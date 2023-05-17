@@ -6,6 +6,7 @@ import '../../../infrastructure/firestore/array_repo.dart';
 import '../shared/shared.dart';
 import '../../../infrastructure/firestore/basic_repo.dart';
 
+@RoutePage()
 class BasicInfoScreen extends StatefulWidget {
 
   const BasicInfoScreen({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(body: Center(child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
           width: 400,
@@ -132,7 +133,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
     ),
   );
 
-  Card basicInfoCard() => defaultCard('Basic Info', [
+  Card basicInfoCard() => defaultCard('Basic Info', [Center(child: Column(children: [
     SharedStatefulWidget.addSizedOutlinedTextField(
         readOnly: true,
         onTap: _pickGender,
@@ -154,7 +155,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
         labelText: 'Weight',
         color: Colors.lightGreen
     )
-  ]);
+  ]))]);
 
   Card familyHistoryCard() => defaultCard('Family Medical History', [
     SharedStatefulWidget.addSizedCheckBox(
@@ -291,15 +292,15 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
     await showDialog(
         context: context,
         builder: (context) => SizedBox(width: 70, child: AlertDialog(
-          backgroundColor: Colors.lightGreen,
+          backgroundColor: Colors.lightGreen[200],
           content: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 RadioListTile(
                     value: true,
                     groupValue: isMale,
-                    title: const Text('Male'),
-                    activeColor: Colors.white,
+                    title: const Text('Male', style: TextStyle(color: Colors.white)),
+                    activeColor: Colors.lightGreen,
                     onChanged: (val) {
                       setState(() => isMale = val!);
                       Navigator.pop(context);
@@ -308,8 +309,8 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                 RadioListTile(
                     value: false,
                     groupValue: isMale,
-                    title: const Text('Female'),
-                    activeColor: Colors.white,
+                    title: const Text('Female', style: TextStyle(color: Colors.white)),
+                    activeColor: Colors.lightGreen,
                     onChanged: (val) {
                       setState(() => isMale = val!);
                       Navigator.pop(context);
@@ -361,7 +362,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
   }
 
   void nextPage() => pageController.nextPage(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeIn
   );
 }

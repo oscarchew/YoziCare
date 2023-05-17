@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gdsc/presentation/screens/home/food_analysis_screen.dart';
 import 'image_picker_page.dart';
 
+@RoutePage()
 class FoodAnalysisScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

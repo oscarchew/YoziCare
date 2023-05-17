@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import '../shared/chart/chart_painter.dart';
 import '../shared/chart/data.dart';
 import '../shared/shared.dart';
 
+@RoutePage()
 class EgfrScreen extends StatefulWidget {
 
   const EgfrScreen({Key? key}) : super(key: key);

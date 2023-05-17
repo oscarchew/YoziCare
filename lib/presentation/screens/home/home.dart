@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../../router/router.gr.dart';
 
+@RoutePage()
 class HomePageScreen extends StatelessWidget {
 
   const HomePageScreen({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class HomePageScreen extends StatelessWidget {
         MyDataRoute()
       ],
       bottomNavigationBuilder: (_, tabsRouter) => SalomonBottomBar(
+        backgroundColor: Colors.green.withOpacity(0.1),
         margin: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 30,
@@ -26,7 +28,7 @@ class HomePageScreen extends StatelessWidget {
         onTap: tabsRouter.setActiveIndex,
         items: [
           SalomonBottomBarItem(
-            selectedColor: Colors.lightGreen[800],
+            selectedColor: Colors.lightGreen,
             icon: const Icon(
               Icons.food_bank,
               size: 25,
@@ -34,7 +36,7 @@ class HomePageScreen extends StatelessWidget {
             title: const Text('My Food'),
           ),
           SalomonBottomBarItem(
-            selectedColor: Colors.lightGreen[300],
+            selectedColor: Colors.lightGreen,
             icon: const Icon(
               Icons.map,
               size: 25,
@@ -50,7 +52,7 @@ class HomePageScreen extends StatelessWidget {
             title: const Text('CKD Stats'),
           ),
           SalomonBottomBarItem(
-            selectedColor: Colors.lightGreen[300],
+            selectedColor: Colors.lightGreen,
             icon: const Icon(
               Icons.chat,
               size: 25,
@@ -58,7 +60,7 @@ class HomePageScreen extends StatelessWidget {
             title: const Text('Chatbot'),
           ),
           SalomonBottomBarItem(
-            selectedColor: Colors.lightGreen[800],
+            selectedColor: Colors.lightGreen,
             icon: const Icon(
               Icons.assignment_outlined,
               size: 25,

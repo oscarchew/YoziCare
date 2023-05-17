@@ -44,42 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCeMZMaXGDDojb-F3qxB4JUvsWZUiV7mKg',
-    appId: '1:391402314875:web:49fcfd3cf98eaed4dc56de',
-    messagingSenderId: '391402314875',
-    projectId: 'ckd-care',
-    authDomain: 'ckd-care.firebaseapp.com',
-    storageBucket: 'ckd-care.appspot.com',
-    measurementId: 'G-ZSRZ23DHYN',
+    apiKey: 'AIzaSyCVigPhLOOb_Xz3OS3F7wkGC5pc17XDeEo',
+    appId: '1:428554762480:web:2f81d19ec3bf66ad196a35',
+    messagingSenderId: '428554762480',
+    projectId: 'yozicare-ae4be',
+    authDomain: 'yozicare-ae4be.firebaseapp.com',
+    storageBucket: 'yozicare-ae4be.appspot.com',
+    measurementId: 'G-P36JZZ9DD7',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAFfIRKCHd6vh5yfv7qOqmpQgbhNLu2sYY',
-    appId: '1:391402314875:android:7ae78679262ebb72dc56de',
-    messagingSenderId: '391402314875',
-    projectId: 'ckd-care',
-    storageBucket: 'ckd-care.appspot.com',
+    apiKey: 'AIzaSyCKgTmM6VDf9qRA-uRrOxnu2TcyX9__lYI',
+    appId: '1:428554762480:android:619f59ffcc99f8cc196a35',
+    messagingSenderId: '428554762480',
+    projectId: 'yozicare-ae4be',
+    storageBucket: 'yozicare-ae4be.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCEGUPhMIqs1Yf6QWQdPnulIe7V6Ok1NvA',
-    appId: '1:391402314875:ios:241c22f928c11f7ddc56de',
-    messagingSenderId: '391402314875',
-    projectId: 'ckd-care',
-    storageBucket: 'ckd-care.appspot.com',
-    androidClientId: '391402314875-tl11ia4r6sgskqd4lrendg18ss7vlf3b.apps.googleusercontent.com',
-    iosClientId: '391402314875-masv31nbg3qkojcek6ug8am754kms0rq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBxFWS9pit3U90EoM0f-7fqtB1adwq2dyM',
+    appId: '1:428554762480:ios:8006bf9b5e521975196a35',
+    messagingSenderId: '428554762480',
+    projectId: 'yozicare-ae4be',
+    storageBucket: 'yozicare-ae4be.appspot.com',
+    iosClientId: '428554762480-knohvr9vnlj1vbdbeshnk3ffu5tbb7lr.apps.googleusercontent.com',
     iosBundleId: 'com.example.gdsc',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCEGUPhMIqs1Yf6QWQdPnulIe7V6Ok1NvA',
-    appId: '1:391402314875:ios:241c22f928c11f7ddc56de',
-    messagingSenderId: '391402314875',
-    projectId: 'ckd-care',
-    storageBucket: 'ckd-care.appspot.com',
-    androidClientId: '391402314875-tl11ia4r6sgskqd4lrendg18ss7vlf3b.apps.googleusercontent.com',
-    iosClientId: '391402314875-masv31nbg3qkojcek6ug8am754kms0rq.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBxFWS9pit3U90EoM0f-7fqtB1adwq2dyM',
+    appId: '1:428554762480:ios:8006bf9b5e521975196a35',
+    messagingSenderId: '428554762480',
+    projectId: 'yozicare-ae4be',
+    storageBucket: 'yozicare-ae4be.appspot.com',
+    iosClientId: '428554762480-knohvr9vnlj1vbdbeshnk3ffu5tbb7lr.apps.googleusercontent.com',
     iosBundleId: 'com.example.gdsc',
   );
 }

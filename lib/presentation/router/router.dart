@@ -1,14 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gdsc/presentation/screens/home/food_analysis.dart';
-import 'package:gdsc/presentation/screens/home/google_maps_all.dart';
-import '../screens/home/chatbot.dart';
-import '../screens/home/home.dart';
-import '../screens/home/basic_info.dart';
-import '../screens/intro/intro.dart';
-import '../screens/intro/basic_info.dart';
-import '../screens/home/ckd_stats.dart';
-import '../screens/login.dart';
+import 'router.gr.dart';
 
 class CheckIfAlreadyLoggedIn extends AutoRouteGuard {
   @override
@@ -23,55 +15,54 @@ class CheckIfAlreadyLoggedIn extends AutoRouteGuard {
   }
 }
 
-@MaterialAutoRouter(
-  replaceInRouteName: 'Screen,Route',
-  routes: <AutoRoute>[
+@AutoRouterConfig(replaceInRouteName: 'Screen,Route')
+class AppRouter extends $AppRouter {
+  @override
+  RouteType get defaultRouteType => RouteType.material();
+  @override
+  List<AutoRoute> get routes => [
     AutoRoute(
         path: '/',
-        page: HomePageScreen,
+        page: HomePageRoute.page,
         initial: true,
-        guards: [CheckIfAlreadyLoggedIn],
+        guards: [CheckIfAlreadyLoggedIn()],
         children: [
           AutoRoute(
               path: 'egfr',
-              page: EgfrScreen,
+              page: EgfrRoute.page,
               initial: true
           ),
-          // Not yet implemented
           AutoRoute(
               path: 'food',
-              page: FoodAnalysisScreen
+              page: FoodAnalysisRoute.page
           ),
-          // Not yet implemented
           AutoRoute(
               path: 'map',
-              page: GoogleMapsScreen
+              page: GoogleMapsRoute.page
           ),
-          // Not yet implemented
           AutoRoute(
               path: 'chatbot',
-              page: ChatbotScreen
+              page: ChatbotRoute.page
           ),
           AutoRoute(
               path: 'my-data',
-              page: MyDataScreen
+              page: MyDataRoute.page
           )
         ]
     ),
     AutoRoute(
-      path: '/login',
-      page: LoginScreen
+        path: '/login',
+        page: LoginRoute.page
     ),
     AutoRoute(
         path: '/intro',
-        page: IntroScreen
+        page: IntroRoute.page
     ),
     AutoRoute(
         path: '/basic-info',
-        page: BasicInfoScreen
+        page: BasicInfoRoute.page
     ),
-  ],
-)
-class $AppRouter {}
+  ];
+}
 
 // flutter pub run build_runner build --delete-conflicting-outputs

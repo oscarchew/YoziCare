@@ -1,14 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import '../presentation/router/router.gr.dart';
 import 'presentation/router/router.dart';
+import 'package:flutter/services.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp(appRouter: AppRouter(
-      checkIfAlreadyLoggedIn: CheckIfAlreadyLoggedIn()
-  )));
+  runApp(MyApp(appRouter: AppRouter()));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,13 +19,20 @@ class MyApp extends StatelessWidget {
   static const String title = 'CKD Care';
 
   @override
-  Widget build(BuildContext context) => MaterialApp.router(
-      title: title,
-      theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.blue,
-      ),
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser()
-  );
+  Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(
+        SystemUiMode.manual,
+        overlays: [SystemUiOverlay.top]
+    );
+    return MaterialApp.router(
+        title: title,
+        theme: ThemeData(
+          useMaterial3: true,
+          primarySwatch: Colors.blue,
+          unselectedWidgetColor: Colors.lightGreen
+        ),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser()
+    );
+  }
 }

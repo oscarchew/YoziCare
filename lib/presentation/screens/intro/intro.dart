@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/database/firestore.dart';
 import '../../../infrastructure/firestore/array_repo.dart';
 
+@RoutePage()
 class IntroScreen extends StatefulWidget {
 
   const IntroScreen({Key? key}) : super(key: key);

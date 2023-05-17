@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:gdsc/model/polyline_response.dart';
 
-
+@RoutePage()
 class GoogleMapsScreen extends StatefulWidget {
   const GoogleMapsScreen({Key? key}) : super(key: key);
 
@@ -70,10 +71,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Find the kidney hospital"),
-          centerTitle: true,
-        ),
         body: Stack(
             children: [
               GoogleMap(
@@ -265,12 +262,15 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           children: [
             // NearbyHospital button
             Positioned(
-              top: 110,
-              right: 3,
+              top: 70,
+              right: 30,
               child: Container( // TODO: 相機縮放
                 alignment: Alignment.topLeft,
                 // margin: const EdgeInsets.all(10),
                 child: FloatingActionButton.extended(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.lightGreen,
+                  elevation: 0,
                   onPressed: () async{
                     if(!showHospital){
                       final Uint8List markerIcon = await getBytesFromAsset('assets/mapicons/health-medical.png', 40); // 要在ymal add assets 加 - assets/mapicons/ 才能讀到
@@ -288,9 +288,12 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
             // Current Location
             Positioned(
-              bottom: 70, //10
-              right: 3,
+              bottom: 100, //10
+              right: 30,
               child: FloatingActionButton(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.lightGreen,
+                elevation: 0,
                 onPressed: () async { // jump to current location
                   Position position = await _determinePosition();
                   origin = LatLng(position.latitude, position.longitude);
@@ -313,9 +316,12 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
             // Walking
             Positioned(
-              bottom: 10, // 70
+              bottom: 20, // 70
               left: 30,
               child: FloatingActionButton(// 按下按鈕後就畫線
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.lightGreen,
+                elevation: 0,
                 onPressed: () {
                   if_direction = !if_direction;
                   travelMethod = "walking";
@@ -329,9 +335,12 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
             // Driving
             Positioned( // 開車按鈕
-              bottom: 70, //130
+              bottom: 100, //130
               left: 30,
               child: FloatingActionButton(// 按下按鈕後就畫線
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.lightGreen,
+                elevation: 0,
                 onPressed: () {
                   if_direction = !if_direction;
                   travelMethod = "driving";

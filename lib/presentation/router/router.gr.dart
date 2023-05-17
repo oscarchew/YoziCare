@@ -1,257 +1,208 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i11;
+import 'package:gdsc/presentation/screens/home/basic_info.dart' as _i1;
+import 'package:gdsc/presentation/screens/home/chatbot.dart' as _i2;
+import 'package:gdsc/presentation/screens/home/ckd_stats.dart' as _i3;
+import 'package:gdsc/presentation/screens/home/food_analysis.dart' as _i4;
+import 'package:gdsc/presentation/screens/home/google_maps_all.dart' as _i5;
+import 'package:gdsc/presentation/screens/home/home.dart' as _i6;
+import 'package:gdsc/presentation/screens/intro/basic_info.dart' as _i7;
+import 'package:gdsc/presentation/screens/intro/intro.dart' as _i8;
+import 'package:gdsc/presentation/screens/login.dart' as _i9;
 
-import '../screens/home/basic_info.dart' as _i9;
-import '../screens/home/chatbot.dart' as _i8;
-import '../screens/home/ckd_stats.dart' as _i5;
-import '../screens/home/food_analysis.dart' as _i6;
-import '../screens/home/google_maps_all.dart' as _i7;
-import '../screens/home/home.dart' as _i1;
-import '../screens/intro/basic_info.dart' as _i4;
-import '../screens/intro/intro.dart' as _i3;
-import '../screens/login.dart' as _i2;
-import 'router.dart' as _i12;
-
-class AppRouter extends _i10.RootStackRouter {
-  AppRouter({
-    _i11.GlobalKey<_i11.NavigatorState>? navigatorKey,
-    required this.checkIfAlreadyLoggedIn,
-  }) : super(navigatorKey);
-
-  final _i12.CheckIfAlreadyLoggedIn checkIfAlreadyLoggedIn;
+abstract class $AppRouter extends _i10.RootStackRouter {
+  $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i10.PageFactory> pagesMap = {
-    HomePageRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+    MyDataRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.HomePageScreen(),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i2.LoginScreen(),
-      );
-    },
-    IntroRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i3.IntroScreen(),
-      );
-    },
-    BasicInfoRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i4.BasicInfoScreen(),
-      );
-    },
-    EgfrRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i5.EgfrScreen(),
-      );
-    },
-    FoodAnalysisRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: _i6.FoodAnalysisScreen(),
-      );
-    },
-    GoogleMapsRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i7.GoogleMapsScreen(),
+        child: const _i1.MyDataScreen(),
       );
     },
     ChatbotRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+      return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.ChatbotScreen(),
+        child: const _i2.ChatbotScreen(),
       );
     },
-    MyDataRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
+    EgfrRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.MyDataScreen(),
+        child: const _i3.EgfrScreen(),
+      );
+    },
+    FoodAnalysisRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i4.FoodAnalysisScreen(),
+      );
+    },
+    GoogleMapsRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.GoogleMapsScreen(),
+      );
+    },
+    HomePageRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.HomePageScreen(),
+      );
+    },
+    BasicInfoRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.BasicInfoScreen(),
+      );
+    },
+    IntroRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.IntroScreen(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return _i10.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i9.LoginScreen(),
       );
     },
   };
-
-  @override
-  List<_i10.RouteConfig> get routes => [
-        _i10.RouteConfig(
-          HomePageRoute.name,
-          path: '/',
-          guards: [checkIfAlreadyLoggedIn],
-          children: [
-            _i10.RouteConfig(
-              '#redirect',
-              path: '',
-              parent: HomePageRoute.name,
-              redirectTo: 'egfr',
-              fullMatch: true,
-            ),
-            _i10.RouteConfig(
-              EgfrRoute.name,
-              path: 'egfr',
-              parent: HomePageRoute.name,
-            ),
-            _i10.RouteConfig(
-              FoodAnalysisRoute.name,
-              path: 'food',
-              parent: HomePageRoute.name,
-            ),
-            _i10.RouteConfig(
-              GoogleMapsRoute.name,
-              path: 'map',
-              parent: HomePageRoute.name,
-            ),
-            _i10.RouteConfig(
-              ChatbotRoute.name,
-              path: 'chatbot',
-              parent: HomePageRoute.name,
-            ),
-            _i10.RouteConfig(
-              MyDataRoute.name,
-              path: 'my-data',
-              parent: HomePageRoute.name,
-            ),
-          ],
-        ),
-        _i10.RouteConfig(
-          LoginRoute.name,
-          path: '/login',
-        ),
-        _i10.RouteConfig(
-          IntroRoute.name,
-          path: '/intro',
-        ),
-        _i10.RouteConfig(
-          BasicInfoRoute.name,
-          path: '/basic-info',
-        ),
-      ];
 }
 
 /// generated route for
-/// [_i1.HomePageScreen]
+/// [_i1.MyDataScreen]
+class MyDataRoute extends _i10.PageRouteInfo<void> {
+  const MyDataRoute({List<_i10.PageRouteInfo>? children})
+      : super(
+          MyDataRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MyDataRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.ChatbotScreen]
+class ChatbotRoute extends _i10.PageRouteInfo<void> {
+  const ChatbotRoute({List<_i10.PageRouteInfo>? children})
+      : super(
+          ChatbotRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ChatbotRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i3.EgfrScreen]
+class EgfrRoute extends _i10.PageRouteInfo<void> {
+  const EgfrRoute({List<_i10.PageRouteInfo>? children})
+      : super(
+          EgfrRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EgfrRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.FoodAnalysisScreen]
+class FoodAnalysisRoute extends _i10.PageRouteInfo<void> {
+  const FoodAnalysisRoute({List<_i10.PageRouteInfo>? children})
+      : super(
+          FoodAnalysisRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FoodAnalysisRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i5.GoogleMapsScreen]
+class GoogleMapsRoute extends _i10.PageRouteInfo<void> {
+  const GoogleMapsRoute({List<_i10.PageRouteInfo>? children})
+      : super(
+          GoogleMapsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GoogleMapsRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.HomePageScreen]
 class HomePageRoute extends _i10.PageRouteInfo<void> {
   const HomePageRoute({List<_i10.PageRouteInfo>? children})
       : super(
           HomePageRoute.name,
-          path: '/',
           initialChildren: children,
         );
 
   static const String name = 'HomePageRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.LoginScreen]
-class LoginRoute extends _i10.PageRouteInfo<void> {
-  const LoginRoute()
-      : super(
-          LoginRoute.name,
-          path: '/login',
-        );
-
-  static const String name = 'LoginRoute';
-}
-
-/// generated route for
-/// [_i3.IntroScreen]
-class IntroRoute extends _i10.PageRouteInfo<void> {
-  const IntroRoute()
-      : super(
-          IntroRoute.name,
-          path: '/intro',
-        );
-
-  static const String name = 'IntroRoute';
-}
-
-/// generated route for
-/// [_i4.BasicInfoScreen]
+/// [_i7.BasicInfoScreen]
 class BasicInfoRoute extends _i10.PageRouteInfo<void> {
-  const BasicInfoRoute()
+  const BasicInfoRoute({List<_i10.PageRouteInfo>? children})
       : super(
           BasicInfoRoute.name,
-          path: '/basic-info',
+          initialChildren: children,
         );
 
   static const String name = 'BasicInfoRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.EgfrScreen]
-class EgfrRoute extends _i10.PageRouteInfo<void> {
-  const EgfrRoute()
+/// [_i8.IntroScreen]
+class IntroRoute extends _i10.PageRouteInfo<void> {
+  const IntroRoute({List<_i10.PageRouteInfo>? children})
       : super(
-          EgfrRoute.name,
-          path: 'egfr',
+          IntroRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'EgfrRoute';
+  static const String name = 'IntroRoute';
+
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.FoodAnalysisScreen]
-class FoodAnalysisRoute extends _i10.PageRouteInfo<void> {
-  const FoodAnalysisRoute()
+/// [_i9.LoginScreen]
+class LoginRoute extends _i10.PageRouteInfo<void> {
+  const LoginRoute({List<_i10.PageRouteInfo>? children})
       : super(
-          FoodAnalysisRoute.name,
-          path: 'food',
+          LoginRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'FoodAnalysisRoute';
-}
+  static const String name = 'LoginRoute';
 
-/// generated route for
-/// [_i7.GoogleMapsScreen]
-class GoogleMapsRoute extends _i10.PageRouteInfo<void> {
-  const GoogleMapsRoute()
-      : super(
-          GoogleMapsRoute.name,
-          path: 'map',
-        );
-
-  static const String name = 'GoogleMapsRoute';
-}
-
-/// generated route for
-/// [_i8.ChatbotScreen]
-class ChatbotRoute extends _i10.PageRouteInfo<void> {
-  const ChatbotRoute()
-      : super(
-          ChatbotRoute.name,
-          path: 'chatbot',
-        );
-
-  static const String name = 'ChatbotRoute';
-}
-
-/// generated route for
-/// [_i9.MyDataScreen]
-class MyDataRoute extends _i10.PageRouteInfo<void> {
-  const MyDataRoute()
-      : super(
-          MyDataRoute.name,
-          path: 'my-data',
-        );
-
-  static const String name = 'MyDataRoute';
+  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
 }

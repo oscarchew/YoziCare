@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "391402314875",
-    "project_id": "ckd-care",
-    "storage_bucket": "ckd-care.appspot.com"
+    "project_number": "428554762480",
+    "project_id": "yozicare-ae4be",
+    "storage_bucket": "yozicare-ae4be.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:391402314875:android:7ae78679262ebb72dc56de",
+        "mobilesdk_app_id": "1:428554762480:android:619f59ffcc99f8cc196a35",
         "android_client_info": {
           "package_name": "com.example.gdsc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "391402314875-tl11ia4r6sgskqd4lrendg18ss7vlf3b.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.gdsc",
-            "certificate_hash": "7a3bac54bcc9aca54bac728227508bd050468140"
-          }
-        },
-        {
-          "client_id": "391402314875-1rv95r8qcmp3p1p488tucm3njrnvjq58.apps.googleusercontent.com",
+          "client_id": "428554762480-4gt0p978r06du6v2rq5f1ntis4b7ibi7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFfIRKCHd6vh5yfv7qOqmpQgbhNLu2sYY"
+          "current_key": "AIzaSyCKgTmM6VDf9qRA-uRrOxnu2TcyX9__lYI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "391402314875-1rv95r8qcmp3p1p488tucm3njrnvjq58.apps.googleusercontent.com",
+              "client_id": "428554762480-4gt0p978r06du6v2rq5f1ntis4b7ibi7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
