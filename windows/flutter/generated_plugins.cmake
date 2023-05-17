@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   dialogflow_grpc
+  firebase_core
   geolocator_windows
 )
 

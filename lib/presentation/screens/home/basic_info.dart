@@ -7,6 +7,7 @@ import '../../../domain/database/firestore.dart';
 import '../../../infrastructure/firestore/basic_repo.dart';
 import '../../../infrastructure/google_auth/google_auth_repo.dart';
 
+@RoutePage()
 class MyDataScreen extends StatefulWidget {
 
   const MyDataScreen({Key? key}) : super(key: key);
