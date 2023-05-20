@@ -49,6 +49,7 @@ class AddFoodBody extends StatelessWidget {
       appBar: AppBar(
         title: this.isFood ? const Text("Food composition analysis"): const Text("Nutrition extraction"),
         centerTitle: true,
+        backgroundColor: Colors.green.withOpacity(0.1),
       ),
       backgroundColor: Colors.white,
       body: Container(

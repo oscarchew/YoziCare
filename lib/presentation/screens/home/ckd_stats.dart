@@ -450,22 +450,22 @@ class _EgfrScreenState extends State<EgfrScreen> {
 
   String currentSuggestions(num egfr) => egfr >= 60
       ? """
-✅ Healthy diet
-✅ Regular routine
-✅ Blood sugar control
-✅ Blood pressure control
-✅ Regular testing for CKD"""
+✓ Healthy diet
+✓ Regular routine
+✓ Blood sugar control
+✓ Blood pressure control
+✓ Regular testing for CKD"""
       : egfr >= 15
       ? """
-✅ Be sure to cooperate with treatment
-✅ Healthy habits
-✅ Notice phosphorus and salt intake
-✅ Use phosphate binders
-✅ Low-protein diet"""
+✓ Be sure to cooperate with treatment
+✓ Healthy habits
+✓ Notice phosphorus and salt intake
+✓ Use phosphate binders
+✓ Low-protein diet"""
       : """
-✅ Medications for loss of appetite
-✅ Erythropoietin or Iron for anemia
-✅ Prevention of pulmonary edema
-✅ Prevention of hyperkalemia
-✅ Kidney transplantation""";
+✓ Medications for loss of appetite
+✓ Erythropoietin or Iron for anemia
+✓ Prevention of pulmonary edema
+✓ Prevention of hyperkalemia
+✓ Kidney transplantation""";
 }

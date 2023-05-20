@@ -24,6 +24,8 @@ import 'package:sound_stream/sound_stream.dart';
 import 'package:dialogflow_grpc/dialogflow_grpc.dart';
 import 'package:dialogflow_grpc/generated/google/cloud/dialogflow/v2beta1/session.pb.dart';
 
+import '../shared/shared.dart';
+
 @RoutePage()
 class ChatbotScreen extends StatefulWidget {
 
@@ -92,8 +94,7 @@ class _ChatState extends State<ChatbotScreen> {
     //TODO Dialogflow Code
     ChatMessage message = ChatMessage(
       text: text,
-      name: "You",
-      type: true,
+      isMyMessage: true,
     );
     setState(() {
       _messages.insert(0, message);
@@ -104,8 +105,7 @@ class _ChatState extends State<ChatbotScreen> {
     if (fulfillmenText.isNotEmpty)  {
       ChatMessage botMessage = ChatMessage(
         text: fulfillmenText,
-        name: "Bot",
-        type: false,
+        isMyMessage: false,
       );
       setState(() {
         _messages.insert(0, botMessage);
@@ -158,14 +158,12 @@ class _ChatState extends State<ChatbotScreen> {
 
           ChatMessage message = ChatMessage(
             text: queryText,
-            name: "You",
-            type: true,
+            isMyMessage: true,
           );
 
           ChatMessage botMessage = ChatMessage(
             text: fulfillmentText,
-            name: "Bot",
-            type: false,
+            isMyMessage: false,
           );
 
           _messages.insert(0, message);
@@ -195,37 +193,38 @@ class _ChatState extends State<ChatbotScreen> {
         children: <Widget>[
           Flexible(
               child: ListView.builder(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(15),
                 reverse: true,
                 itemBuilder: (_, int index) => _messages[index],
                 itemCount: _messages.length,
               )),
-          const Divider(height: 1.0),
           Container(
               decoration: BoxDecoration(color: Theme.of(context).cardColor),
               child: IconTheme(
                 data: IconThemeData(color: Theme.of(context).colorScheme.secondary), // accent color changes to .colorScheme.secondary
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                  margin: const EdgeInsets.all(15.0),
                   child: Row(
                     children: <Widget>[
-                      Flexible(
-                        child: TextField(
+                      Expanded(
+                        child: SharedStatefulWidget.addSizedOutlinedTextField(
                           controller: _textController,
-                          onSubmitted: handleSubmitted,
-                          decoration: const InputDecoration.collapsed(hintText: "Send a message"),
+                          labelText: "Send a message",
+                          filled: true,
+                          filledColor: Colors.green.withOpacity(0.1),
+                          borderColor: Colors.lightGreen,
+                          roundedBorder: true,
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                        child: IconButton(
-                          icon: const Icon(Icons.send),
-                          onPressed: () => handleSubmitted(_textController.text),
-                        ),
+                      IconButton(
+                        icon: const Icon(Icons.send),
+                        color: Colors.lightGreen,
+                        onPressed: () => handleSubmitted(_textController.text),
                       ),
                       IconButton(
                         iconSize: 30.0,
                         icon: Icon(_isRecording ? Icons.mic_off : Icons.mic),
+                        color: Colors.lightGreen,
                         onPressed: _isRecording ? stopStream : handleStream,
                       ),
                     ],
@@ -243,67 +242,32 @@ class _ChatState extends State<ChatbotScreen> {
 //
 //------------------------------------------------------------------------------------
 class ChatMessage extends StatelessWidget {
-  ChatMessage({this.text="", this.name="", this.type=true});
+
+  const ChatMessage({super.key, this.text="", this.isMyMessage=true});
 
   final String text;
-  final String name;
-  final bool type;
-
-  List<Widget> otherMessage(context) {
-    return <Widget>[
-      Container(
-        margin: const EdgeInsets.only(right: 16.0),
-        child: CircleAvatar(child: new Text('B')),
-      ),
-      Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(this.name,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Container(
-              margin: const EdgeInsets.only(top: 5.0),
-              child: Text(text),
-            ),
-          ],
-        ),
-      ),
-    ];
-  }
-
-  List<Widget> myMessage(context) {
-    return <Widget>[
-      Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Text(this.name, style: Theme.of(context).textTheme.subtitle1),
-            Container(
-              margin: const EdgeInsets.only(top: 5.0),
-              child: Text(text),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.only(left: 16.0),
-        child: CircleAvatar(
-            child: Text(
-              this.name[0],
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            )),
-      ),
-    ];
-  }
+  final bool isMyMessage;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: this.type ? myMessage(context) : otherMessage(context),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Column(children: [
+    const SizedBox(height: 10),
+    Row(
+        mainAxisAlignment: isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          Container(
+              decoration: BoxDecoration(
+                  color: isMyMessage ? Colors.lightGreen : Colors.white,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  border: isMyMessage ? null : Border.all(color: Colors.lightGreen)
+              ),
+              width: text.length > 30 ? 330 : null,
+              padding: const EdgeInsets.all(15),
+              child: Text(text,
+                style: TextStyle(
+                  color: isMyMessage ? Colors.white : Colors.lightGreen,
+                ),
+              )),
+        ]
+    )
+  ]);
 }

@@ -22,30 +22,40 @@ class SharedStatefulWidget {
     required String labelText,
     bool readOnly = false,
     void Function()? onTap,
-    Color? color = Colors.white
+    Color? borderColor = Colors.white,
+    bool roundedBorder = false,
+    bool filled = false,
+    Color? filledColor,
   }) => StatefulBuilder(builder: (BuildContext context, setState) => SizedBox(
     width: 200,
     child: TextField(
       enableInteractiveSelection: false,
-      cursorColor: color,
+      cursorColor: borderColor,
       controller: controller,
       readOnly: readOnly,
       onTap: onTap,
-      style: TextStyle(color: color),
+      style: TextStyle(color: borderColor),
       decoration: InputDecoration(
-          labelStyle: TextStyle(color: color),
+          filled: filled,
+          fillColor: filledColor,
+          contentPadding: const EdgeInsets.all(10),
+          labelStyle: TextStyle(color: borderColor),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: color!, width: 1.0),
+              borderSide: BorderSide(color: borderColor!, width: 1.0),
+              borderRadius: roundedBorder ? BorderRadius.circular(40.0) : const BorderRadius.all(Radius.circular(4.0))
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: color!, width: 2.5),
+              borderSide: BorderSide(color: borderColor!, width: 2.5),
+              borderRadius: roundedBorder ? BorderRadius.circular(40.0) : const BorderRadius.all(Radius.circular(4.0))
           ),
-          border: const OutlineInputBorder(),
+          border: OutlineInputBorder(
+              borderSide: BorderSide(color: borderColor!, width: 1.0),
+              borderRadius: roundedBorder ? BorderRadius.circular(40.0) : const BorderRadius.all(Radius.circular(4.0))
+          ),
           labelText: labelText
       ),
     ),
-  )
-  );
+  ));
 }
 
 extension SnackbarExtension on BuildContext {
