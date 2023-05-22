@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../../router/router.gr.dart';
 
@@ -33,7 +34,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.food_bank,
               size: 25,
             ),
-            title: const Text('My Food'),
+            title: Text('My Food', style: GoogleFonts.playfairDisplay()),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -41,7 +42,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.map,
               size: 25,
             ),
-            title: const Text('CKD Map'),
+            title: Text('CKD Map', style: GoogleFonts.playfairDisplay()),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -49,7 +50,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.auto_graph,
               size: 25,
             ),
-            title: const Text('CKD Stats'),
+            title: Text('CKD Stats', style: GoogleFonts.playfairDisplay()),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -57,7 +58,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.chat,
               size: 25,
             ),
-            title: const Text('Chatbot'),
+            title: Text('Chatbot', style: GoogleFonts.playfairDisplay()),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -65,7 +66,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.assignment_outlined,
               size: 25,
             ),
-            title: const Text('My Data'),
+            title: Text('My Data', style: GoogleFonts.playfairDisplay()),
           )
         ],
       )

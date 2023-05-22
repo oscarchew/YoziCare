@@ -8,6 +8,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
@@ -24,7 +25,7 @@ class GoogleMapsScreen extends StatefulWidget {
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   late GoogleMapController  googleMapController;
-  String apiKey = "YOUR_APIKEY"; // API KEY
+  String apiKey = "AIzaSyAdvt0Y9wnhkG7ABvqeZGQEbJ10P08G0j4"; // API KEY
 
   static const CameraPosition initialPosition = CameraPosition(target: LatLng(25.0173405, 121.5397518), zoom: 14.6);
 
@@ -92,26 +93,28 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
               // Show path, total distance, total time
               if_direction?
               Positioned(
-                  top: 10,
-                  left: 10,
+                  top: 55,
+                  left: 15,
                   child: Container(
                     alignment: Alignment.topRight,
                     padding: const EdgeInsets.all(10),
-                    color: Colors.white,
+                    decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(8.0))),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("By: " + travelMethod),
-                        Text("Total Distance: \n" + totalDistance),
-                        Text("Total Time: \n" + totalTime),
+                        Text("By: " + travelMethod + "\n"),
+                        Row(children: [const Text("Total Distance: \n"),
+                          Text(totalDistance, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.lightGreen),),],),
+                        Row(children: [const Text("Total Time: \n"),
+                          Text(totalTime, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.lightGreen),)],)
                       ],
                     ),)) : Container(),
 
               // flipcard
               if_pointInfo ?
               Positioned(
-                  top: 100.0,
+                  bottom: 50,
                   left: 15.0,
                   child: FlipCard(
                     front: Container(
@@ -138,12 +141,13 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text("Address: ", style: TextStyle(fontFamily: 'WorkSans', fontSize: 12.0, fontWeight: FontWeight.w500),),
                                   Container(
-                                    width: 105.0,
+                                    width: 175.0,
                                     child: Text(
                                       placeInfo['formatted_address'] ?? 'none given',
-                                      style: const TextStyle(fontFamily: 'WorkSans', fontSize: 12.0, fontWeight: FontWeight.w400),
+                                      style: GoogleFonts.playfairDisplay(
+                                        textStyle: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   )
                                 ],
@@ -156,12 +160,16 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text("Contact: ", style: TextStyle(fontFamily: 'WorkSans', fontSize: 12.0, fontWeight: FontWeight.w500),),
+                                  Text("Tel: ", style: GoogleFonts.playfairDisplay(
+                                    textStyle: const TextStyle(fontSize: 12.0),
+                                  )),
                                   Container(
                                     width: 105.0,
                                     child: Text(
-                                      placeInfo['formatted_phone_number'] ?? 'none given',
-                                      style: const TextStyle(fontFamily: 'WorkSans', fontSize: 12.0, fontWeight: FontWeight.w400),
+                                        placeInfo['formatted_phone_number'] ?? 'none given',
+                                        style: GoogleFonts.playfairDisplay(
+                                          textStyle: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+                                        )
                                     ),
                                   )
                                 ],
@@ -174,12 +182,16 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text("Status: ", style: TextStyle(fontFamily: 'WorkSans', fontSize: 12.0, fontWeight: FontWeight.w500),),
+                                  Text("Status: ", style: GoogleFonts.playfairDisplay(
+                                    textStyle: const TextStyle(fontSize: 12.0),
+                                  )),
                                   Container(
                                     width: 105.0,
                                     child: Text(
                                       placeInfo['business_status'] ?? 'none given',
-                                      style: const TextStyle(fontFamily: 'WorkSans', fontSize: 12.0, fontWeight: FontWeight.w400),
+                                      style: GoogleFonts.playfairDisplay(
+                                        textStyle: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -202,42 +214,45 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                                 GestureDetector(
                                   onTap: () { setState(() { is_review = true; is_photo = false;});},
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 700),
+                                    duration: Duration(milliseconds: 500),
                                     curve: Curves.easeIn,
                                     padding: EdgeInsets.fromLTRB(7.0, 4.0, 7.0, 4.0),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(11.0),
-                                        color: is_review ? Colors.green.shade300 : Colors.white),
+                                        color: is_review ? Colors.lightGreen : Colors.white),
                                     child: Text(
                                       'Reviews',
-                                      style: TextStyle(
-                                          color: is_review ? Colors.white : Colors.black87,
-                                          fontFamily: 'WorkSans',
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.w500),
+                                      style: GoogleFonts.playfairDisplay(
+                                          textStyle: TextStyle(
+                                              color: is_review ? Colors.white : Colors.black87,
+                                              fontSize: 12.0,
+                                              fontWeight: FontWeight.bold
+                                          )
+                                      ),
                                     ),
                                   ),
                                 ),
                                 GestureDetector( // 顯示圖片
                                   onTap: () { setState(() { is_review = false; is_photo = true;});},
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 700),
+                                    duration: Duration(milliseconds: 500),
                                     curve: Curves.easeIn,
                                     padding: EdgeInsets.fromLTRB(7.0, 4.0, 7.0, 4.0),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(11.0),
-                                        color: is_photo ? Colors.green.shade300 : Colors.white),
+                                        color: is_photo ? Colors.lightGreen : Colors.white),
                                     child: Text(
                                       'Photos',
-                                      style: TextStyle(
-                                          color: is_photo ? Colors.white : Colors.black87,
-                                          fontFamily: 'WorkSans',
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.w500),
+                                      style: GoogleFonts.playfairDisplay(
+                                        textStyle: TextStyle(
+                                            color: is_photo ? Colors.white : Colors.black87,
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                )],
                             ),
                           ),
                           Container( // 這邊是下面的內容
@@ -263,7 +278,7 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
             // NearbyHospital button
             Positioned(
               top: 70,
-              right: 30,
+              right: 5,
               child: Container( // TODO: 相機縮放
                 alignment: Alignment.topLeft,
                 // margin: const EdgeInsets.all(10),
@@ -288,8 +303,8 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
             // Current Location
             Positioned(
-              bottom: 100, //10
-              right: 30,
+              bottom: 220, //10
+              right: 5,
               child: FloatingActionButton(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.lightGreen,
@@ -316,8 +331,8 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
             // Walking
             Positioned(
-              bottom: 20, // 70
-              left: 30,
+              bottom: 60, // 70
+              right: 5,
               child: FloatingActionButton(// 按下按鈕後就畫線
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.lightGreen,
@@ -335,8 +350,8 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
             // Driving
             Positioned( // 開車按鈕
-              bottom: 100, //130
-              left: 30,
+              bottom: 140, //130
+              right: 5,
               child: FloatingActionButton(// 按下按鈕後就畫線
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.lightGreen,
@@ -995,10 +1010,12 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                   width: 160.0,
                   child: Text(
                     review['author_name'],
-                    style: TextStyle(
-                        fontFamily: 'WorkSans',
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w500),
+                    style: GoogleFonts.playfairDisplay(
+                        textStyle: const TextStyle(
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold
+                        )
+                    ),
                   ),
                 ),
                 SizedBox(height: 3.0),
@@ -1007,18 +1024,19 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                   starCount: 5,
                   starSize: 7,
                   valueLabelColor: const Color(0xff9b9b9b),
-                  valueLabelTextStyle: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'WorkSans',
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 9.0),
+                  valueLabelTextStyle: GoogleFonts.playfairDisplay(
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 9.0
+                      )
+                  ),
                   valueLabelRadius: 7,
                   maxValue: 5,
                   starSpacing: 2,
                   maxValueVisibility: false,
                   valueLabelVisibility: true,
-                  animationDuration: Duration(milliseconds: 1000),
+                  animationDuration: Duration(milliseconds: 500),
                   valueLabelPadding:
                   const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
                   valueLabelMargin: const EdgeInsets.only(right: 4),
@@ -1034,10 +1052,11 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
           child: Container(
             child: Text(
               review['text'],
-              style: TextStyle(
-                  fontFamily: 'WorkSans',
-                  fontSize: 11.0,
-                  fontWeight: FontWeight.w400),
+              style: GoogleFonts.playfairDisplay(
+                  textStyle: const TextStyle(
+                      fontSize: 11.0,
+                  )
+              ),
             ),
           ),
         ),
@@ -1052,12 +1071,13 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
       return Container(
         child: Center(
           child: Text(
-            'No Photos',
-            style: TextStyle(
-                fontFamily: 'WorkSans',
-                fontSize: 12.0,
-                fontWeight: FontWeight.w500),
-          ),
+              'No Photos',
+              style: GoogleFonts.playfairDisplay(
+                  textStyle: const TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold
+                  )
+              )),
         ),
       );
     } else {
@@ -1100,21 +1120,25 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 child: Center(
                   child: Text(
                     'Prev',
-                    style: TextStyle(
-                        fontFamily: 'WorkSans',
-                        color: Colors.white,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w500),
+                    style: GoogleFonts.playfairDisplay(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold
+                        )
+                    ),
                   ),
                 ),
               ),
             ),
             Text(
               '$tempDisplayIndex/' + photoElement.length.toString(),
-              style: TextStyle(
-                  fontFamily: 'WorkSans',
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w500),
+              style: GoogleFonts.playfairDisplay(
+                  textStyle: const TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold
+                  )
+              ),
             ),
             GestureDetector(
               onTap: () {
@@ -1131,16 +1155,18 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(9.0),
                     color: photoGalleryIndex != photoElement.length - 1
-                        ? Colors.green.shade500
+                        ? Colors.lightGreen
                         : Colors.grey.shade500),
                 child: Center(
                   child: Text(
                     'Next',
-                    style: TextStyle(
-                        fontFamily: 'WorkSans',
-                        color: Colors.white,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w500),
+                    style: GoogleFonts.playfairDisplay(
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold
+                        )
+                    ),
                   ),
                 ),
               ),

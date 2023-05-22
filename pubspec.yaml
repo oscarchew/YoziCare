@@ -48,6 +48,9 @@ dependencies:
   salomon_bottom_bar: ^3.3.1
   shared_preferences: ^2.0.18
   collection: ^1.17.0
+  google_fonts: ^4.0.4
+  sign_in_button: ^3.2.0
+  loading_animation_widget: ^1.2.0+4
 
   # Kevin
   dio: ^4.0.4
@@ -65,7 +68,7 @@ dependencies:
   rxdart: ^0.26.0
 
   # for google_maps_flutter:
-  google_maps_flutter: ^2.2.4
+  google_maps_flutter: ^2.2.6
   geolocator: ^9.0.2
   flutter_google_places: ^0.3.0
   awesome_snackbar_content: ^0.1.1
@@ -108,6 +111,7 @@ flutter:
   assets:
     - assets/mapicons/
     - assets/credentials.json
+    - assets/icon/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

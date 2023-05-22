@@ -110,7 +110,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
         borderRadius: BorderRadius.circular(20)
     ),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           color: Colors.lightGreen,
@@ -133,29 +133,31 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
     ),
   );
 
-  Card basicInfoCard() => defaultCard('Basic Info', [Center(child: Column(children: [
-    SharedStatefulWidget.addSizedOutlinedTextField(
-        readOnly: true,
-        onTap: _pickGender,
-        controller: genderEditingController,
-        labelText: 'Gender',
-        color: Colors.lightGreen
-    ),
-    const SizedBox(height: 20),
-    SharedStatefulWidget.addSizedOutlinedTextField(
-        readOnly: true,
-        onTap: _pickDate,
-        controller: birthdayEditingController,
-        labelText: 'Birthday',
-        color: Colors.lightGreen
-    ),
-    const SizedBox(height: 20),
-    SharedStatefulWidget.addSizedOutlinedTextField(
-        controller: weightEditingController,
-        labelText: 'Weight',
-        color: Colors.lightGreen
-    )
-  ]))]);
+  Card basicInfoCard() => defaultCard('Basic Info', [Center(child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SharedStatefulWidget.addSizedOutlinedTextField(
+            readOnly: true,
+            onTap: _pickGender,
+            controller: genderEditingController,
+            labelText: 'Gender',
+            borderColor: Colors.lightGreen
+        ),
+        const SizedBox(height: 20),
+        SharedStatefulWidget.addSizedOutlinedTextField(
+            readOnly: true,
+            onTap: _pickDate,
+            controller: birthdayEditingController,
+            labelText: 'Birthday',
+            borderColor: Colors.lightGreen
+        ),
+        const SizedBox(height: 20),
+        SharedStatefulWidget.addSizedOutlinedTextField(
+            controller: weightEditingController,
+            labelText: 'Weight',
+            borderColor: Colors.lightGreen
+        )
+      ]))]);
 
   Card familyHistoryCard() => defaultCard('Family Medical History', [
     SharedStatefulWidget.addSizedCheckBox(
@@ -274,7 +276,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: Colors.lightGreen
+                  foregroundColor: Colors.lightGreen
               ),
             ),
           ),
