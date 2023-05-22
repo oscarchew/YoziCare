@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:gdsc/presentation/screens/home/food_analysis_screen.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 @RoutePage()
 class FoodAnalysisScreen extends StatefulWidget {
@@ -48,6 +49,22 @@ class _FoodAnalysisScreenState extends State<FoodAnalysisScreen> {
     ],
   ));
 
+  void loadingDialog() => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+          backgroundColor: Colors.lightGreen[200],
+          title: const Text('Analyzing...', style: TextStyle(color: Colors.white)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(width: 70, height: 70, child: Center(
+                  child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.white, size: 70)
+              )),
+            ],
+          )
+      )
+  );
+
   Future getImage(bool isCamera) async {
     final pickedFile = await ImagePicker().pickImage(
       source: isCamera ? ImageSource.camera : ImageSource.gallery,
@@ -62,13 +79,15 @@ class _FoodAnalysisScreenState extends State<FoodAnalysisScreen> {
       });
 
       try {
+        loadingDialog();
         final response = await Dio().post(
           cloudRunUrl,
           data: formData,
         );
+        Navigator.pop(context);
         Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddFoodBody(true, _image!, response.data))
+            context,
+            MaterialPageRoute(builder: (context) => AddFoodBody(true, _image!, response.data))
         );
       } catch (e) {
         print('Error: $e');

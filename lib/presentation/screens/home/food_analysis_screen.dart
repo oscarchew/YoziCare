@@ -49,11 +49,12 @@ class AddFoodBody extends StatelessWidget {
       appBar: AppBar(
         title: this.isFood ? const Text("Food composition analysis"): const Text("Nutrition extraction"),
         centerTitle: true,
-        backgroundColor: Colors.green.withOpacity(0.1),
+        backgroundColor: Colors.transparent,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color.alphaBlend(Colors.green.withOpacity(0.1), Colors.white),
       body: Container(
-        margin: EdgeInsets.only(right: 15. w, left: 15. w),
+        color: Colors.transparent,
+        padding: EdgeInsets.symmetric(horizontal: 15. w),
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: [
