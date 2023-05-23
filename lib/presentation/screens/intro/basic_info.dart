@@ -356,7 +356,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
       default:
         await firestoreBasicFieldRepository.update(
             dataType: DataType.healthData,
-            json: personalHistory
+            json: personalHabits
         );
         context.router.replaceNamed('/');
         break;
