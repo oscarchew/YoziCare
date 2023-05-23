@@ -20,7 +20,8 @@ class FoodCategories extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child:  Container(
+          Expanded(child:
+          Container(
             padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
                 color: Colors.transparent,
