@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gdsc/model/food_analysis_content/theme.dart';
+import 'package:localization/localization.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget symptom({ bool ? healthData, String ? symtom_name}) {
@@ -33,7 +34,7 @@ Widget weight({ double ? weight}) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Weight: ", style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold, fontSize: 14),),
+        Text('weight'.i18n(), style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold, fontSize: 14),),
         SizedBox(width: 3, height: 1,),
         SizedBox(width: 3, height: 1,),
         Text(weight.toString()!, style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold, fontSize: 14),),
@@ -54,7 +55,7 @@ Widget birthday({ String ? birthday}) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Birth: ", style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold, fontSize: 14),),
+        Text('birthday'.i18n(), style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold, fontSize: 14),),
         SizedBox(width: 3, height: 1,),
         Text(birthday!, style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold, fontSize: 14),),
         SizedBox(width: 3, height: 1,),

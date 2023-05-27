@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gdsc/model/food_analysis_content/health_info.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localization/localization.dart';
 import '../../../domain/database/firestore.dart';
 import '../../../infrastructure/firestore/basic_repo.dart';
 import '../../../infrastructure/google_auth/google_auth_repo.dart';
@@ -31,259 +31,252 @@ class _MyDataScreenState extends State<MyDataScreen> {
     String fdatetime = DateFormat('yyyy-MMM-dd').format(healthData["birthday"].toDate());
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SizedBox(height: 70,),
-        Expanded(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.all(8),
-              // decoration: BoxDecoration(color: Colors.transparent, border: Border.all(color: AppColors.colorTint400), borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                children: [
-                  AspectRatio(
-                    aspectRatio: 3.8,
-                    child: Container(
-                      // margin: EdgeInsets.only(top: 5. w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.withOpacity(0.1),
-                                  border: Border.all(color: Colors.lightGreen,),
-                                  borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: Column(
+        const SizedBox(height: 20),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 3.8,
+                child: Container(
+                  // margin: EdgeInsets.only(top: 5. w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.1),
+                              border: Border.all(color: Colors.lightGreen,),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        ' Personal Information',
-                                        style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      birthday(birthday: fdatetime),
-                                      weight(weight: healthData["weight"]),
-                                      FaIcon( healthData["gender"] == "Female" ? FontAwesomeIcons.venus : FontAwesomeIcons.mars, color: healthData["gender"] == "Female" ? Colors.red : Colors.blue),
-                                    ],
+                                  Text(
+                                    'basic-info-title'.i18n(),
+                                    style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
                                   ),
                                 ],
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  birthday(birthday: fdatetime),
+                                  weight(weight: healthData["weight"]),
+                                  FaIcon( healthData["gender"] == "Female" ? FontAwesomeIcons.venus : FontAwesomeIcons.mars, color: healthData["gender"] == "Female" ? Colors.red : Colors.blue),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                ],
+                ),
               ),
-            )
+            ],
+          ),
         ),
-        SizedBox(height: 70,),
-        Expanded(
-            flex: 4,
-            child: Container(
-              padding: EdgeInsets.all(8),
-              // decoration: BoxDecoration(color: Colors.transparent, border: Border.all(color: AppColors.colorTint400), borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                children: [
-                  // Family History
-                  AspectRatio(
-                    aspectRatio: 3.2,
-                    child: Container(
-                      // margin: EdgeInsets.only(top: 10. w),
-                      margin: EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.withOpacity(0.1),
-                                  border: Border.all(color: Colors.lightGreen,),
-                                  borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: Column(
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          // decoration: BoxDecoration(color: Colors.transparent, border: Border.all(color: AppColors.colorTint400), borderRadius: BorderRadius.circular(20)),
+          child: Column(
+            children: [
+              // Family History
+              AspectRatio(
+                aspectRatio: 2.6,
+                child: Container(
+                  // margin: EdgeInsets.only(top: 10. w),
+                  margin: EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.1),
+                              border: Border.all(color: Colors.lightGreen,),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        ' Family History',
-                                        // style: TextStyle(color: AppColors.colorTint700, fontWeight: FontWeight.bold, fontSize: 16. sp),
-                                        style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
-                                      ),
-                                      FaIcon( FontAwesomeIcons.userDoctor, color: Colors.lightGreen),
-                                    ],
+                                  Text(
+                                    'family-history-title'.i18n(),
+                                    // style: TextStyle(color: AppColors.colorTint700, fontWeight: FontWeight.bold, fontSize: 16. sp),
+                                    style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
                                   ),
-                                  Row(
-                                    children: [
-                                      symptom(healthData: healthData["proteinuria"],symtom_name: 'Polycystic KD'),
-                                      SizedBox(width: 10,),
-                                      symptom(healthData: healthData["igAN"],symtom_name: 'IgAN'),
-                                      SizedBox(width: 10,),
-                                      symptom(healthData: healthData["liddle"],symtom_name: 'Liddle'),
-                                      SizedBox(width: 10,),
-                                      symptom(healthData: healthData["others"],symtom_name: 'Others'),
-                                    ],
-                                  ),
+                                  FaIcon( FontAwesomeIcons.userDoctor, color: Colors.lightGreen),
                                 ],
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  // Personal History
-                  AspectRatio(
-                    aspectRatio: 2,
-                    child: Container(
-                      // margin: EdgeInsets.only(top: 10. w),
-                      margin: EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.withOpacity(0.1),
-                                  border: Border.all(color: Colors.lightGreen,),
-                                  borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        ' Personal History',
-                                        // style: TextStyle(color: AppColors.colorTint700, fontWeight: FontWeight.bold, fontSize: 16. sp),
-                                        style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
-                                      ),
-                                      FaIcon( FontAwesomeIcons.userDoctor, color: Colors.lightGreen),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      symptom(healthData: healthData["diabetes"],symtom_name: 'Diabetes'),
-                                      SizedBox(width: 10,),
-                                      symptom(healthData: healthData["gout"],symtom_name: 'Metabolic Arthritis, Gout'),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      symptom(healthData: healthData["hypertension"],symtom_name: 'Hypertension'),
-                                      SizedBox(width: 10,),
-                                      symptom(healthData: healthData["hyperuricemia"],symtom_name: 'Hyperuricemia'),
-                                      SizedBox(width: 10,),
-                                      symptom(healthData: healthData["proteinuria"],symtom_name: 'Proteinuria'),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      symptom(healthData: healthData["renalColic"],symtom_name: 'Renal colic'),
-                                      SizedBox(width: 10,),
-                                      symptom(healthData: healthData["frequentUrination"],symtom_name: 'Frequent urination'),
-                                    ],
-                                  )
+                                  symptom(healthData: healthData["proteinuria"],symtom_name: 'polycystic-abbrev'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["igAN"],symtom_name: 'igan-abbrev'.i18n()),
                                 ],
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  // Family History
-                  AspectRatio(
-                    aspectRatio: 3.2,
-                    child: Container(
-                      // margin: EdgeInsets.only(top: 10. w),
-                      margin: EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                  color: Colors.green.withOpacity(0.1),
-                                  border: Border.all(color: Colors.lightGreen,),
-                                  borderRadius: BorderRadius.circular(20)
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        ' Personal Habits',
-                                        // style: TextStyle(color: AppColors.colorTint700, fontWeight: FontWeight.bold, fontSize: 16. sp),
-                                        style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
-                                      ),
-                                      FaIcon( FontAwesomeIcons.userDoctor, color: Colors.lightGreen),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      symptom(healthData: healthData["painkillerAbuse"],symtom_name: 'Painkiller'),
-                                      symptom(healthData: healthData["drinking"],symtom_name: 'Drinking'),
-                                      symptom(healthData: healthData["antibioticsAbuse"],symtom_name: 'Antibiotics'),
-                                      symptom(healthData: healthData["smoking"],symtom_name: 'Smoking'),
-                                    ],
-                                  ),
+                                  symptom(healthData: healthData["liddle"],symtom_name: 'liddle'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["others"],symtom_name: 'others'.i18n()),
                                 ],
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                ],
+                ),
               ),
-            )
-        ),
-        SizedBox(height: 70,),
-        Expanded(
-            flex: 0,
-            child: Container(
-              padding: EdgeInsets.all(13),
-              child:
-              ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.lightGreen
+              // Personal History
+              AspectRatio(
+                aspectRatio: 2,
+                child: Container(
+                  // margin: EdgeInsets.only(top: 10. w),
+                  margin: EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.1),
+                              border: Border.all(color: Colors.lightGreen,),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'personal-history-title'.i18n(),
+                                    // style: TextStyle(color: AppColors.colorTint700, fontWeight: FontWeight.bold, fontSize: 16. sp),
+                                    style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
+                                  FaIcon( FontAwesomeIcons.userDoctor, color: Colors.lightGreen),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  symptom(healthData: healthData["diabetes"],symtom_name: 'diabetes'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["proteinuria"],symtom_name: 'proteinuria'.i18n()),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  symptom(healthData: healthData["hypertension"],symtom_name: 'hypertension'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["hyperuricemia"],symtom_name: 'hyperuricemia'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["gout"],symtom_name: 'gout-abbrev'.i18n()),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  symptom(healthData: healthData["renalColic"],symtom_name: 'renal-colic'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["frequentUrination"],symtom_name: 'frequent-urination'.i18n()),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  onPressed: _signOut,
-                  icon: const Icon(Icons.logout),
-                  label: const Text('Sign out')
+                ),
               ),
-            )
-        ),
+              // Family History
+              AspectRatio(
+                aspectRatio: 2.6,
+                child: Container(
+                  // margin: EdgeInsets.only(top: 10. w),
+                  margin: EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.1),
+                              border: Border.all(color: Colors.lightGreen,),
+                              borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'personal-habits-title'.i18n(),
+                                    // style: TextStyle(color: AppColors.colorTint700, fontWeight: FontWeight.bold, fontSize: 16. sp),
+                                    style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
+                                  FaIcon( FontAwesomeIcons.userDoctor, color: Colors.lightGreen),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  symptom(healthData: healthData["painkillerAbuse"],symtom_name: 'painkiller-abuse'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["drinking"],symtom_name: 'drinking'.i18n()),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  symptom(healthData: healthData["antibioticsAbuse"],symtom_name: 'antibiotics-abuse'.i18n()),
+                                  SizedBox(width: 10,),
+                                  symptom(healthData: healthData["smoking"],symtom_name: 'smoking'.i18n()),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
+        ,
+        ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.lightGreen
+            ),
+            onPressed: _signOut,
+            icon: const Icon(Icons.logout),
+            label: Text('sign-out'.i18n())
+        )
       ],
     );
   }
-
 
   void getHealthData() async {
     final newHealthData = await firestoreRepository.get(
@@ -292,19 +285,16 @@ class _MyDataScreenState extends State<MyDataScreen> {
     setState(() => healthData = newHealthData);
   }
 
-  String _toDateTime(timeStamp) =>
-      (timeStamp as Timestamp).toDate().toString();
-
   void _signOut() async => await createDialog(
-      title: 'Signing Out',
-      content: 'Do you really want to sign out?',
+      title: 'sign-out-title'.i18n(),
+      content: 'sign-out-warning'.i18n(),
       actions: [
         ElevatedButton(
             style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.lightGreen
             ),
-            child: const Text('Yes'),
+            child: Text('yes'.i18n()),
             onPressed: () {
               authorizationRepository.signOut();
               context.router.replaceNamed('/login');
@@ -315,7 +305,7 @@ class _MyDataScreenState extends State<MyDataScreen> {
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.lightGreen
             ),
-            child: const Text('No'),
+            child: Text('no'.i18n()),
             onPressed: () => Navigator.pop(context)
         ),
       ]

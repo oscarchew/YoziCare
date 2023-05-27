@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 import '../../infrastructure/google_auth/google_auth_repo.dart';
 
@@ -21,8 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Welcome to YoziCare!',
-                    style: TextStyle(
+                Text('welcome-title'.i18n(),
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                         color: Colors.lightGreen
@@ -35,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 50),
                 SignInButton(
+                  text: 'sign-in-with-google'.i18n(),
                     Buttons.googleDark,
                     onPressed: _signInWithGoogle
                 )

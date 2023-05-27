@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:localization/localization.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../../router/router.gr.dart';
 
@@ -34,7 +34,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.food_bank,
               size: 25,
             ),
-            title: Text('My Food', style: GoogleFonts.playfairDisplay()),
+            title: Text('my-food-title'.i18n(), style: const TextStyle(fontFamily: 'GenWanMin'),),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -42,7 +42,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.map,
               size: 25,
             ),
-            title: Text('CKD Map', style: GoogleFonts.playfairDisplay()),
+            title: Text('map-title'.i18n(), style: const TextStyle(fontFamily: 'GenWanMin'),),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -50,7 +50,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.auto_graph,
               size: 25,
             ),
-            title: Text('CKD Stats', style: GoogleFonts.playfairDisplay()),
+            title: Text('stats-title'.i18n(), style: const TextStyle(fontFamily: 'GenWanMin'),),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -58,7 +58,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.chat,
               size: 25,
             ),
-            title: Text('Chatbot', style: GoogleFonts.playfairDisplay()),
+            title: Text('chatbot-title'.i18n(), style: const TextStyle(fontFamily: 'GenWanMin'),),
           ),
           SalomonBottomBarItem(
             selectedColor: Colors.lightGreen,
@@ -66,7 +66,7 @@ class HomePageScreen extends StatelessWidget {
               Icons.assignment_outlined,
               size: 25,
             ),
-            title: Text('My Data', style: GoogleFonts.playfairDisplay()),
+            title: Text('my-data-title'.i18n(), style: const TextStyle(fontFamily: 'GenWanMin'),),
           )
         ],
       )

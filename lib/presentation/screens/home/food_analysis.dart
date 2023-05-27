@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gdsc/presentation/screens/home/food_analysis_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:localization/localization.dart';
 
 @RoutePage()
 class FoodAnalysisScreen extends StatefulWidget {
@@ -29,22 +30,20 @@ class _FoodAnalysisScreenState extends State<FoodAnalysisScreen> {
           style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: Colors.lightGreen,
-              minimumSize: Size(200, 50)
           ),
           onPressed: () => getImage(true),
           icon: const Icon(Icons.camera_alt),
-          label: const Text('Take photo')
+          label: Text('take-photo'.i18n())
       ),
       const SizedBox(height: 30),
       ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,
               backgroundColor: Colors.lightGreen,
-              minimumSize: Size(200, 50)
           ),
           onPressed: () => getImage(false),
           icon: const Icon(Icons.perm_media),
-          label: const Text('Select from gallery')
+          label: Text('select-from-gallery'.i18n())
       )
     ],
   ));
@@ -53,7 +52,7 @@ class _FoodAnalysisScreenState extends State<FoodAnalysisScreen> {
       context: context,
       builder: (context) => AlertDialog(
           backgroundColor: Colors.lightGreen[200],
-          title: const Text('Analyzing...', style: TextStyle(color: Colors.white)),
+          title: Text('analyzing'.i18n(), style: const TextStyle(color: Colors.white)),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -3,10 +3,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 import '../../../domain/database/firestore.dart';
 import '../../../infrastructure/firestore/array_repo.dart';
 import '../../../infrastructure/firestore/basic_repo.dart';
+import '../../../infrastructure/google_auth/google_auth_repo.dart';
 import '../shared/chart/chart_painter.dart';
 import '../shared/chart/data.dart';
 import '../shared/shared.dart';
@@ -33,7 +35,7 @@ class _EgfrScreenState extends State<EgfrScreen> {
   // Hydration Card
   final hydrationEditingController = TextEditingController();
   final urinationEditingController = TextEditingController();
-  num lastUrination = 0;
+  num lastUrination = 1500;
   List<LineData> recentHydrationHistory = [];
 
   @override
@@ -59,7 +61,7 @@ class _EgfrScreenState extends State<EgfrScreen> {
             title: Text(message.notification!.title!),
             content: Text(message.notification!.body!),
             actions: [ElevatedButton(
-                child: const Text('OK'),
+                child: Text('ok'.i18n()),
                 onPressed: () => Navigator.pop(context)
             )]
         ))
@@ -76,7 +78,7 @@ class _EgfrScreenState extends State<EgfrScreen> {
       children: [
         SizedBox(
           width: 400,
-          height: 500,
+          height: 550,
           child: PageView(
             controller: PageController(viewportFraction: 0.85),
             children: [
@@ -131,9 +133,9 @@ class _EgfrScreenState extends State<EgfrScreen> {
                 padding: const EdgeInsets.all(15),
                 child: Row(
                   children: [
-                    const Text(
-                      'Current eGFR status: ',
-                      style: TextStyle(
+                    Text(
+                      'current-egfr'.i18n(),
+                      style: const TextStyle(
                           fontSize: 20,
                           color: Colors.lightGreen
                       ),
@@ -178,18 +180,18 @@ class _EgfrScreenState extends State<EgfrScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
-                      'Water Intake',
-                      style: TextStyle(color: Colors.green, fontSize: 20),
+                      'water-intake-title'.i18n(),
+                      style: const TextStyle(color: Colors.green, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      ' & ',
-                      style: TextStyle(color: Colors.lightGreen, fontSize: 20),
+                      'and'.i18n(),
+                      style: const TextStyle(color: Colors.lightGreen, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Urination',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      'urination-title'.i18n(),
+                      style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
                     )
                   ],
                 ),
@@ -203,15 +205,15 @@ class _EgfrScreenState extends State<EgfrScreen> {
                     drawStages: false
                 )
             ),
-            const Padding(
-                padding: EdgeInsets.only(
+            Padding(
+                padding: const EdgeInsets.only(
                     left: 15,
                     right: 15,
                     top: 15
                 ),
                 child: Text(
-                  'Recommended water intake:',
-                  style: TextStyle(
+                  'recommended-hydration'.i18n(),
+                  style: const TextStyle(
                       fontSize: 20,
                       color: Colors.lightGreen
                   ),
@@ -249,7 +251,7 @@ class _EgfrScreenState extends State<EgfrScreen> {
                       const SizedBox(height: 20),
                       SharedStatefulWidget.addSizedOutlinedTextField(
                           controller: crEditingController,
-                          labelText: 'New Cr'
+                          labelText: 'new-cr'.i18n()
                       ),
                     ],
                   )
@@ -265,7 +267,7 @@ class _EgfrScreenState extends State<EgfrScreen> {
                       Navigator.pop(context);
                     },
                     icon: const Icon(Icons.send),
-                    label: const Text('Submit')
+                    label: Text('submit'.i18n())
                 )
               ]
           ))
@@ -288,12 +290,12 @@ class _EgfrScreenState extends State<EgfrScreen> {
                       const SizedBox(height: 20),
                       SharedStatefulWidget.addSizedOutlinedTextField(
                           controller: hydrationEditingController,
-                          labelText: 'Today\'s hydration'
+                          labelText: 'hydration-today'.i18n()
                       ),
                       const SizedBox(height: 20),
                       SharedStatefulWidget.addSizedOutlinedTextField(
                           controller: urinationEditingController,
-                          labelText: 'Today\'s urination'
+                          labelText: 'urination-today'.i18n()
                       )
                     ],
                   )
@@ -309,7 +311,7 @@ class _EgfrScreenState extends State<EgfrScreen> {
                       Navigator.pop(context);
                     },
                     icon: const Icon(Icons.send),
-                    label: const Text('Submit')
+                    label: Text('submit'.i18n())
                 )
               ]
           )
@@ -407,12 +409,12 @@ class _EgfrScreenState extends State<EgfrScreen> {
       recentHydrationHistory = [
         LineData(
             Colors.green,
-            'Recent Hydration History',
+            'recent-hydration'.i18n(),
             updatedHydrationDataPoints
         ),
         LineData(
             Colors.white,
-            'Recent Urination History',
+            'recent-urination'.i18n(),
             updatedUrinationDataPoints
         )
       ];
@@ -446,26 +448,11 @@ class _EgfrScreenState extends State<EgfrScreen> {
   String currentState(num egfr) => egfr >= 60 ? 'G1 ~ G2'
       : egfr >= 30 ? 'G3'
       : egfr >= 15 ? 'G4'
-      : 'G5';
+      : egfr != 0  ? 'G5'
+      : 'no-cr-yet'.i18n();
 
-  String currentSuggestions(num egfr) => egfr >= 60
-      ? """
-✓ Healthy diet
-✓ Regular routine
-✓ Blood sugar control
-✓ Blood pressure control
-✓ Regular testing for CKD"""
-      : egfr >= 15
-      ? """
-✓ Be sure to cooperate with treatment
-✓ Healthy habits
-✓ Notice phosphorus and salt intake
-✓ Use phosphate binders
-✓ Low-protein diet"""
-      : """
-✓ Medications for loss of appetite
-✓ Erythropoietin or Iron for anemia
-✓ Prevention of pulmonary edema
-✓ Prevention of hyperkalemia
-✓ Kidney transplantation""";
+  String currentSuggestions(num egfr) => egfr >= 60 ? 'suggestion-1'.i18n()
+      : egfr >= 15 ? 'suggestion-2'.i18n()
+      : egfr != 0  ? 'suggestion-3'.i18n()
+      : 'please-enter-one-cr'.i18n();
 }

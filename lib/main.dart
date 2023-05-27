@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'presentation/router/router.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:localization/localization.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,16 +27,36 @@ class MyApp extends StatelessWidget {
         SystemUiMode.manual,
         overlays: [SystemUiOverlay.top]
     );
+    LocalJsonLocalization.delegate.directories = ['lib/i18n'];
     return MaterialApp.router(
-        title: title,
-        theme: ThemeData(
+      title: title,
+
+      // Localization
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        LocalJsonLocalization.delegate
+      ],
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('zh', 'TW'),
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (supportedLocales.contains(locale)) return locale;
+        if (locale?.languageCode == 'zh') return const Locale('zh', 'TW');
+        return const Locale('en', 'US');
+      },
+
+      // Theme
+      theme: ThemeData(
           useMaterial3: true,
           primarySwatch: Colors.blue,
           unselectedWidgetColor: Colors.lightGreen,
-          textTheme: GoogleFonts.playfairDisplayTextTheme()
-        ),
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser()
+          fontFamily: 'GenWanMin'
+      ),
+
+      // Routing
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }
