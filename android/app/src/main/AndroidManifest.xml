@@ -36,8 +36,14 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
+<<<<<<< Updated upstream
 <!--       Add for Google Map-->
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyDzZTGh8AbCt4RVmWlo74HbqxxTYU4DRPU"/>
+=======
+        <!-- Add for Google Map -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                   android:value="YOUR_APIKEY"/>
+>>>>>>> Stashed changes
     </application>
 </manifest>
