@@ -43,6 +43,6 @@
 
         <!-- Add for Google Map -->
         <meta-data android:name="com.google.android.geo.API_KEY"
-                   android:value="AIzaSyAdvt0Y9wnhkG7ABvqeZGQEbJ10P08G0j4"/>
+                   android:value="YOUR_APIKEY"/>
     </application>
 </manifest>
