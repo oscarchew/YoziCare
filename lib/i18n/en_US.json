@@ -76,5 +76,7 @@
   "chatbot-title": "Chatbot",
   "my-data-title": "My Data",
   "no-cr-yet": "",
-  "please-enter-one-cr": "Enter a new Cr first!"
+  "please-enter-one-cr": "Enter a new Cr first!",
+  "suitable": "Suitable",
+  "caution": "Caution"
 }

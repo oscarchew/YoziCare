@@ -386,10 +386,11 @@ class _EgfrScreenState extends State<EgfrScreen> {
     );
     if (updatedHydrationHistory.isEmpty) return;
 
-    final dataLength = updatedHydrationHistory.length;
+    var dataLength = updatedHydrationHistory.length;
     if (dataLength == 1) {
       updatedHydrationHistory.add(updatedHydrationHistory[0]);
       updatedUrinationHistory.add(updatedUrinationHistory[0]);
+      ++dataLength;
     }
     final startingIndexOfSampling = dataLength < 11
         ? 0
