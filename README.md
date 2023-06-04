@@ -6,9 +6,9 @@ Our platform provides a convenient way for people to assess their risk of chroni
 
 | Chronic kidney disease map | Chronic kidney disease statistics | Chatbot |
 | :--: | :--: | :--: |
-| <video src='https://github.com/oscarchew/kidney/assets/100932226/28a11d97-c757-48cd-bc40-ea42360e9228' width=150/> | <video src='https://github.com/oscarchew/kidney/assets/100932226/1e2aa5cf-f960-4d22-8669-c06772ff4890' width=150/> | <video src='https://github.com/oscarchew/kidney/assets/100932226/d177fe2f-9631-41cf-8024-fa62378826d7' width=150/> |
+| <video src='https://github.com/oscarchew/kidney/assets/100932226/448ce604-95cd-4fc1-8233-c5e1e625b26c' width=150/> | <video src='https://github.com/oscarchew/kidney/assets/100932226/2eb6772c-c73e-4345-a257-b08cf16c312b' width=150/> | <video src='https://github.com/oscarchew/kidney/assets/100932226/c22d3b57-791b-4998-8cd9-3924eaff44b4' width=150/> |
 | **Food composition analysis** | **User basic data** | **Localization** |
-| <video src='https://github.com/oscarchew/kidney/assets/100932226/0b11ae08-f180-429e-b86b-c6bad0f08718' width=150/> | <img src='https://github.com/oscarchew/kidney/assets/100932226/c51ac38b-fbb8-4da8-a956-2c1e0cf78af9' width=300/> | <video src='https://github.com/oscarchew/kidney/assets/100932226/a0ceab85-a0ac-427a-818e-36cfac2e23c4' width=150/> |
+| <video src='https://github.com/oscarchew/kidney/assets/100932226/4f132554-e2f0-437b-89b2-0ed38999c94a' width=150/> | <img src='https://github.com/oscarchew/kidney/assets/100932226/cf08cb92-5d90-449d-982e-433e31b1b661' width=280/> | <video src='https://github.com/oscarchew/kidney/assets/100932226/37873dc9-1e4a-4b81-b3b4-a4e5be48ab8f' width=150/> |
 
 ### Chronic kidney disease map
 
