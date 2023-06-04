@@ -9,6 +9,7 @@ class SharedStatefulWidget {
   }) => StatefulBuilder(builder: (BuildContext context, setState) => SizedBox(
       width: 300,
       child: CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
           title: Text(title, style: const TextStyle(fontSize: 16, color: Colors.lightGreen)),
           value: state[field],
           activeColor: Colors.lightGreen,

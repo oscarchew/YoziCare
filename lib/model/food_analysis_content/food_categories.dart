@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gdsc/model/food_analysis_content/statistics-tile.dart';
 import 'package:gdsc/model/food_analysis_content/theme.dart';
+import 'package:localization/localization.dart';
 // 做食物成分分析
 class FoodCategories extends StatelessWidget {
   // const FoodCategories({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class FoodCategories extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                     Text(
-                      'Suitable',
+                      'suitable'.i18n(),
                       style: TextStyle(
                           color: AppColors.colorTint700,
                           fontWeight: FontWeight.bold,
@@ -53,7 +54,8 @@ class FoodCategories extends StatelessWidget {
                   height: 300.h,
                   child: Column(
                     children: [
-                      for (var i in food_result[0]) Text(i.toString()), // 用for loop產生多個物件
+                      for (var i in food_result[0])
+                        Text(i.toString().i18n() == i.toString() ? i.toString().replaceAll('_', ' ') : i.toString().i18n())
                     ],
                   ),
                 )
@@ -78,7 +80,7 @@ class FoodCategories extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Caution',
+                      'caution'.i18n(),
                       style: TextStyle(
                           color: AppColors.colorTint700,
                           fontWeight: FontWeight.bold,
@@ -97,7 +99,7 @@ class FoodCategories extends StatelessWidget {
                   height: 300.h,
                   child: Column(
                     children: [
-                      for (var i in food_result[1]) Text(i.toString()),
+                      for (var i in food_result[1]) Text(i.toString().i18n()),
                     ],
                   ),
                 )

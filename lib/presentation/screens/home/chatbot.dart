@@ -16,6 +16,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:localization/localization.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sound_stream/sound_stream.dart';
 
@@ -209,13 +210,14 @@ class _ChatState extends State<ChatbotScreen> {
                       Expanded(
                         child: SharedStatefulWidget.addSizedOutlinedTextField(
                           controller: _textController,
-                          labelText: "Send a message",
+                          labelText: 'send-message-prompt'.i18n(),
                           filled: true,
                           filledColor: Colors.green.withOpacity(0.1),
                           borderColor: Colors.lightGreen,
                           roundedBorder: true,
                         ),
                       ),
+                      const SizedBox(width: 20),
                       IconButton(
                         icon: const Icon(Icons.send),
                         color: Colors.lightGreen,
@@ -260,7 +262,7 @@ class ChatMessage extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   border: isMyMessage ? null : Border.all(color: Colors.lightGreen)
               ),
-              width: text.length > 30 ? 330 : null,
+              width: text.length > 25 ? 330 : null,
               padding: const EdgeInsets.all(15),
               child: Text(text,
                 style: TextStyle(

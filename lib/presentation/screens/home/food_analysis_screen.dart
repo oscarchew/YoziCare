@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localization/localization.dart';
 import '../../../model/food_analysis_content/appbar.dart';
 import '../../../model/food_analysis_content/calorie-statistics.dart';
 import '../../../model/food_analysis_content/change-amount.dart';
@@ -47,7 +48,7 @@ class AddFoodBody extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: this.isFood ? const Text("Food composition analysis"): const Text("Nutrition extraction"),
+        title: isFood ? Text('food-analysis-result-title'.i18n()): const Text("Nutrition extraction"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),

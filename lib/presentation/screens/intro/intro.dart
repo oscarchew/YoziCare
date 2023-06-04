@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 
 import '../../../domain/database/firestore.dart';
 import '../../../infrastructure/firestore/array_repo.dart';
@@ -33,9 +34,9 @@ class _IntroScreenState extends State<IntroScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Hi, ${FirebaseAuth.instance.currentUser!.displayName}!'),
-              const Text('Before we start, please fill out some information.'),
-              const Text('(All the information can be edited afterwards.)'),
+              Text('${'hi'.i18n()}${FirebaseAuth.instance.currentUser!.displayName}${'exclamation-mark'.i18n()}'),
+              Text('fill-your-information'.i18n()),
+              Text('information-is-editable'.i18n()),
               const SizedBox(height: 20),
               ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
@@ -44,7 +45,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   ),
                   onPressed: () => context.router.replaceNamed('/basic-info'),
                   icon: const Icon(Icons.navigate_next),
-                  label: const Text('Next')
+                  label: Text('next'.i18n())
               ),
             ],
           )
