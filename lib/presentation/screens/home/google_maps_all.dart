@@ -25,7 +25,7 @@ class GoogleMapsScreen extends StatefulWidget {
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
 
   late GoogleMapController  googleMapController;
-  String apiKey = "AIzaSyAdvt0Y9wnhkG7ABvqeZGQEbJ10P08G0j4"; // API KEY
+  String apiKey = "YOUR_APIKEY"; // API KEY
 
   static const CameraPosition initialPosition = CameraPosition(target: LatLng(25.0173405, 121.5397518), zoom: 14.6);
 
