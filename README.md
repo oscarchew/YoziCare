@@ -2,6 +2,8 @@
 ## Introduction
 Our platform provides a convenient way for people to assess their risk of chronic kidney disease (CKD) and keep track of their dietary habits with automated analysis. Patients can easily record their food intake and receive personalized insights, while also accessing professional support for any kidney-related concerns.
 
+Demo Video: https://www.youtube.com/watch?v=ZiV0I_lN80E
+
 ## Features and functionalities
 
 | Chronic kidney disease map | Chronic kidney disease statistics | Chatbot |
